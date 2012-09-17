@@ -39,7 +39,7 @@
 
 class Error {
 
-	private $errors	=	array(
+	private $_errors	=	array(
 
 #		error_code	=>	"error text",
 		
@@ -78,7 +78,7 @@ class Error {
 	# return an error code
 	public function returnError($code = "ERROR_001") {
 
-		return $this->$errors[$code];
+		return $this->_errors[$code];
 
 	}
 
