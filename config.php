@@ -50,7 +50,8 @@ class Config {
 	public $tsport = "10011";	# TeamSpeak3 ServerQuery Port
 	public $tscport = "9987";	# TeamSpeak client port
 
-
+	# use phpBB?
+	public $use_phpbb = TRUE;
 	# Database Information (REQUIRED)
 	public $db_host = "localhost";
 	public $db_user = "dev_user";

@@ -39,7 +39,7 @@
 
 class Error {
 
-	public $errors	=	array(
+	private $errors	=	array(
 
 #		error_code	=>	"error text",
 		
@@ -73,5 +73,13 @@ class Error {
 		"WHITE_001"	=>	"You character is banned from using the Web Services because you do not show up any whitelists. Fuck off.",
 		
 	);
+
+
+	# return an error code
+	public function returnError($code = "ERROR_001") {
+
+		return $this->$errors[$code];
+
+	}
 
 }
