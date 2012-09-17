@@ -43,13 +43,15 @@ class HTML {
 	# Dump our header..
 	public function dump_header() {
 
+		include_once("html/header.inc.html");
 
 	}
 
 
 	# Dump our footer...
 	public function dump_footer() {
-
+	
+		include_once("html/footer.inc.html");
 
 	}
 
@@ -57,7 +59,7 @@ class HTML {
 	# Dump an error out...
 	public function dump_error($error = "An unkown error occured") {
 
-		echo("<div class=\"error\">".$error."</div>";
+		echo("<div class=\"error\">".$error."</div>");
 	}
 
 
@@ -66,6 +68,16 @@ class HTML {
 
 		echo("<div class=\"text\">".$string."</div>");
 	}
+
+	
+	# Dump our API form
+	public function dump_apiForm() {
+
+		echo("Our API Form would show up here");
+
+	}
+
+
 
 
 }

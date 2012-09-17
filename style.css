@@ -3,7 +3,7 @@
 
 body { 
 	background:#000; 
-	background-size:1000px 12px; 
+	background-size:750px 12px; 
 	background-attachment:fixed; 
 	background-position:top center; 
 	color:#FFF; 
@@ -28,17 +28,17 @@ img.center {
 	border:1px dotted #009ac1; 
 	-moz-border-radius: 10px; 
 	-webkit-border-radius: 10px; 
-	width:1000px;
+	width:750px;
 }
 
 #footer {
-	width: 1000px;
+	width: 750px;
 	height: 69px;
 	margin: auto;
 } 
 
 p {
-	width:950px !important;
+	width:720px !important;
 	margin:auto;
 	line-height:1.3em !important;
 	padding: 5px 0px 5px 0px;
@@ -58,7 +58,7 @@ h3 {
 } 
 
 .tags {
-	width: 976px !important; 
+	width: 720px !important; 
 	margin: auto !important;
 	color: #111;
 	background-color: transparent; 
@@ -98,7 +98,7 @@ h3 {
 }
 
 .buttons-bar {
-	width:1000px;
+	width:750px;
 	text-align:right;
 	padding:4px 20px 0px 0px;
 	margin:auto;
@@ -112,7 +112,7 @@ h3 {
 	margin-right: auto; 
 	padding-left:0px; 
 	padding-right:0px; 
-	width: 996px; 
+	width: 730px; 
 	line-height: 1.3em; 
 } 
 

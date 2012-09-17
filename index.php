@@ -39,20 +39,20 @@
 
 # First things first, lets load up our objects..
 include_once("config.php");
-include_once("version.php";
-include_once("classes/class.error.php");
+include_once("version.php");
+include_once("classes/class.errors.php");
 include_once("classes/class.authentication.php");
 include_once("classes/class.html.php");
 
 # Initialze our objects
 $error		=	new Error;
-$auth		=	new Auth;
+$auth		=	new Authentication;
 $config		=	new Config;
 $version	=	new Version;
 $html		=	new HTML;
 
 # Start dumping our page..
-$html->dump_header;
+$html->dump_header();
 
 # Are we performing phpBB authentication as well?
 if($config->use_phpbb == TRUE) {
