@@ -5,8 +5,8 @@
 #####   @ Site:                 arcti.cc
 #####	@ Project:		EvE-Speak
 #####	@ Alias:		
-#####   @ Script Name:          index.php
-#####	@ File Location:	index.php
+#####   @ Script Name:          
+#####	@ File Location:	
 #####
 #####   @ Script Version:       Version 1.0
 #####   @ License:              GPL-3.0  ::  GNU General Public License version 3.0
@@ -16,7 +16,7 @@
 #####   @ Contributors:         geudrik
 #####   @ Date:                 Q3 2012 (August)
 #####
-#####	@ Description		Our index page
+#####	@ Description		
 #####
 #####	 This program is free software; you can redistribute it and/or modify
 #####	   it under the terms of the GNU General Public License as published by
@@ -37,42 +37,35 @@
 #####   
 ############################################################################################################
 
-# First things first, lets load up our objects..
-include_once("config.php");
-include_once("version.php";
-include_once("classes/class.error.php");
-include_once("classes/class.authentication.php");
-include_once("classes/class.html.php");
+class HTML {
 
-# Initialze our objects
-$error		=	new Error;
-$auth		=	new Auth;
-$config		=	new Config;
-$version	=	new Version;
-$html		=	new HTML;
 
-# Start dumping our page..
-$html->dump_header;
+	# Dump our header..
+	public function dump_header() {
 
-# Are we performing phpBB authentication as well?
-if($config->use_phpbb == TRUE) {
 
-	# User must be logged in on the forums to access this page.
-	$err	=	$error->$errors['AUTH_0002'];
-	
-	# Dump the html of our error
-	$html->dump_error($err);
+	}
 
-} else {
 
-	$html->dump_apiForm();
+	# Dump our footer...
+	public function dump_footer() {
+
+
+	}
+
+
+	# Dump an error out...
+	public function dump_error($error = "An unkown error occured") {
+
+		echo("<div class=\"error\">".$error."</div>";
+	}
+
+
+	# Dump generic flavored text
+	public function dump_text($string = "Some generic text! Why are you, as user, seeing this? You should probably contact your admin..") {
+
+		echo("<div class=\"text\">".$string."</div>");
+	}
+
 
 }
-
-
-
-
-
-# Dump our footer
-$html->dump_footer();
-?>

@@ -40,9 +40,58 @@
 class Authentication {
 
 
+	# This function returns an array of cookie information on success, FALSE on failure
 	public function phpBB_is_logged_in() {
 
-		
+		$query = "SELECT config_name, config_value
+					FROM ".$prefix."config
+					WHERE config_name IN ('cookie_name', 'session_length')";
 
+		SQLconnect("open");
+		$result = mysql_query($query) or die("SQL Failed.<br />Error: ".mysql_error()."<br />Query Run:<br />".$query);
+		
+		while($row = mysql_fetch_assoc($result)) {
+			
+			$forums_config[$row['config_name']] = $row['config_value'];
+			
+		}
+		
+		if(empty($forums_config['cookie_name']) or empty($forums_config['session_length'])) {
+			
+			echo "ERROR: Some cookie information could not be read. Please re-login on the forums and try again";
+			break;
+		}
+		
+		if(!isset($_COOKIE[$forums_config['cookie_name'] . '_u'])) {
+			
+			return false;
+			
+		}
+
+		$cookie['User ID'] = mysql_real_escape_string($_COOKIE[$forums_config['cookie_name'] . '_u']);
+		$cookie['Session ID'] = mysql_real_escape_string($_COOKIE[$forums_config['cookie_name'] . '_sid']);
+		
+		# var_dump($cookie);
+		# var_dump($forums_config);
+
+		$query = "SELECT session_user_id as 'User ID'
+					FROM ".$prefix."sessions
+					WHERE session_user_id = '".$cookie['User ID']."'
+					AND session_id = '".$cookie['Session ID']."'
+					AND UNIX_TIMESTAMP() - session_time < ".$forums_config['session_length'];  
+
+		$result = mysql_query($query) or die("SQL Failed.<br />Error: ".mysql_error()."<br />Query Run:<br />".$query);
+		SQLconnect("close");
+		
+		$session = mysql_fetch_assoc($result);
+		
+		if($session['User ID'] == 1){
+			return false;
+
+		}
+		
+		return $session['User ID'];
+		
+	}
 
 }
