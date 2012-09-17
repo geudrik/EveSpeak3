@@ -1,0 +1,153 @@
+/* Arcti.CC */
+
+
+body { 
+	background:#000; 
+	background-size:1000px 12px; 
+	background-attachment:fixed; 
+	background-position:top center; 
+	color:#FFF; 
+	display: block; 
+	font-size:12px;
+	font-family: Helvetica, Arial, Verdana;
+	margin-top: 0px; 
+	margin-bottom: 0px; 
+	margin-left: auto; 
+	margin-right: auto; 
+	padding:0px; 
+} 
+
+img.center { 
+	display: block; 
+	margin-left: auto; 
+	margin-right: auto; 
+} 
+
+#body {
+	background:#000 url("page-bg.png") repeat;
+	border:1px dotted #009ac1; 
+	-moz-border-radius: 10px; 
+	-webkit-border-radius: 10px; 
+	width:1000px;
+}
+
+#footer {
+	width: 1000px;
+	height: 69px;
+	margin: auto;
+} 
+
+p {
+	width:950px !important;
+	margin:auto;
+	line-height:1.3em !important;
+	padding: 5px 0px 5px 0px;
+}
+
+p ul, li {
+	color: #9AA !important;
+}
+
+h1 {
+	color:#FFF;
+}
+
+h3 {
+	color: #FFF;
+	padding-left: 15px;
+} 
+
+.tags {
+	width: 976px !important; 
+	margin: auto !important;
+	color: #111;
+	background-color: transparent; 
+	border: none; 
+	font-weight:normal; 
+	line-height: 1.3em;
+	text-align: right !important;
+}
+
+.code { 
+	background-color:transparent; 
+	border: 1px dashed #009ac1; 
+	color:#9AA; 
+	font-weight:600; 
+	max-height:400px; 
+	margin:0px; 
+	overflow:auto; 
+	padding:6px; 
+	line-height:1.35em; 
+	width:950px;
+	margin:auto; 
+} 
+
+.note { 
+	background-color:transparent; 
+	border:2px dotted #009ac1; 
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px; 
+	-moz-box-shadow: 5px 5px 10px #009ac1; 
+	-webkit-box-shadow:5px 5px 10px #009ac1; 
+	color: #FFF;   
+	padding:15px; 
+	margin:50px auto; 
+	text-align: center; 
+	width:600px; 
+	line-height: 1.3em; 
+}
+
+.buttons-bar {
+	width:1000px;
+	text-align:right;
+	padding:4px 20px 0px 0px;
+	margin:auto;
+}
+
+.frontboxcenter { 
+	color: #99AAAA;  
+	margin-top: 5px; 
+	margin-bottom: 0px; 
+	margin-left: auto; 
+	margin-right: auto; 
+	padding-left:0px; 
+	padding-right:0px; 
+	width: 996px; 
+	line-height: 1.3em; 
+} 
+
+.frontboxcenter a:link {
+	color: #009ac1;
+	text-decoration:none;
+} 
+
+.frontboxcenter a:visited {
+	color:#009ac1;
+	text-decoration:none;
+} 
+
+.frontboxcenter a:hover {
+	color:#009ac1; 
+	text-decoration: underline; 
+} 
+
+.frontboxcenter a:active {
+	color:#009ac1;
+	text-decoration:none;
+} 
+
+.frontboxcenter ul {
+	padding-bottom:15px;
+}
+
+.frontboxcenter li { 
+	list-style-type: circle;
+	font-size:12px;
+	color:#FFF; 
+} 
+
+.frontboxcenter li:hover { 
+	list-style-type: disc;
+	font-size:12px;
+	color:#FFF;
+}
