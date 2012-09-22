@@ -45,7 +45,7 @@ include_once("classes/class.authentication.php");
 include_once("classes/class.html.php");
 
 # Initialze our objects
-$error		=	new Error;
+$error		=	new ErrorCodes;
 $auth		=	new Authentication;
 $config		=	new Config;
 $version	=	new Version;

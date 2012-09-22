@@ -46,7 +46,7 @@ class Config {
 	# Teamspeak 3 Server Query Information (REQUIRED)
 	public $tshost = "localhost";	# TeamSpeak Address for Server Query
 	public $tsname = "serveradmin"; # ServerQuery UserName
-	public $tspass = "EKlCvnnW";	# ServerQuery Password
+	public $tspass = "theSApassword";	# ServerQuery Password
 	public $tsport = "10011";	# TeamSpeak3 ServerQuery Port
 	public $tscport = "9987";	# TeamSpeak client port
 
