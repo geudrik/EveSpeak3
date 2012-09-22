@@ -77,6 +77,13 @@ class HTML {
 
 	}
 
+	# Raw message dump
+	public function raw_error($string) {
+
+		echo($string);
+
+	}
+
 
 
 

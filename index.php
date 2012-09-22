@@ -37,6 +37,8 @@
 #####   
 ############################################################################################################
 
+ini_set('error_reporting', E_ALL);
+
 # First things first, lets load up our objects..
 include_once("config.php");
 include_once("version.php");
@@ -54,22 +56,33 @@ $html		=	new HTML;
 # Start dumping our page..
 $html->dump_header();
 
-# Are we performing phpBB authentication as well?
-if($config->use_phpbb == TRUE) {
 
-	# User must be logged in on the forums to access this page.
-	$err	=	$error->returnError("AUTH_0002");
-	
-	# Dump the html of our error
-	$html->dump_error($err);
+# Basic page generation..
+try {
 
-} else {
+		
+	throw new HandleException(100000, FALSE);
 
-	$html->dump_apiForm();
+	# Are we performing phpBB authentication as well?
+	if($config->use_phpbb == TRUE) {
+
+		# User must be logged in on the forums to access this page.
+		$err	=	$error->returnError("AUTH_0002");
+		
+		# Dump the html of our error
+		$html->dump_error($err);
+
+	} else {
+
+		$html->dump_apiForm();
+
+	}
+
+} catch(HandleException $e) {
+
+	$html->raw_error("There was an error descerning the config file somewhere along the way. {$e->getMessage()}");
 
 }
-
-
 
 
 
