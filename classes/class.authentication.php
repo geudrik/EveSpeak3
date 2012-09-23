@@ -38,6 +38,8 @@
 ############################################################################################################
 
 class Authentication {
+	
+	# This function attempts to register a new user, based on API information to our LOCAL ONLY database
 
 
 	# This function returns an array of cookie information on success, FALSE on failure
