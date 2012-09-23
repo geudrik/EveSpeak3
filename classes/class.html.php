@@ -61,6 +61,12 @@ class HTML {
 
 		echo("<div class=\"error\">".$error."</div>");
 	}
+	
+	# Dump our login form
+	public function dump_login_form() {
+		
+		include_once("html/loginform.inc.html");
+	}
 
 
 	# Dump generic flavored text

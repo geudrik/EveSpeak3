@@ -55,6 +55,7 @@ class ErrorCodes {
 		# Authentication error codes
 		"140000"	=>	"Some phpBB Cookie Information could not be read. Please ensure that you have cookies enabled and try logging back in on the forums.",
 		"140001"	=>	"You're not very good at following directions. You were instructed to LOG IN once you registered before coming to this page. So, go do that then come back here.",
+		"140002"	=>	"The cookie information being read could not be valided. Please log back in normally.",
 
 		# PHEAL related errors
 		"160000"	=>	"We were unable to get your API information from the server for an unknown reason. Sorry. Please try again later.",

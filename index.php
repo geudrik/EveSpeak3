@@ -38,6 +38,7 @@
 ############################################################################################################
 
 ini_set('error_reporting', E_ALL);
+session_start();
 
 # First things first, lets load up our objects..
 include_once("config.php");
@@ -58,31 +59,65 @@ $html->dump_header();
 
 
 # Basic page generation..
-try {
+
 
 		
-	throw new HandleException(100000, FALSE);
+# throw new HandleException(100000, FALSE);
 
-	# Are we performing phpBB authentication as well?
-	if($config->use_phpbb == TRUE) {
+# Use of phpBB as the user base has been scrapped. We will be using our own backend for user authentication.
+#	This allows us much more versatility. Coding in crons to register/deregister is the way to go (allows for flexabiltiy, too)
+
+# If our session isn't valid eg: user hasn't logged in...
+if(!isset($_SESSION['SESSION_VALID'])) {
+	
+	#	Cookie information is as follows...
+	#	{name}, {value}, {expire, unix timestamp time()+seconds before expiry, 0 for never}, NULL, NULL, {secure (bool)}, TRUE
+	if($_COOKIE['_RESUME_SESSION_'] === TRUE) { # Cookies array has a cookie named _RESUME_SESSION_ whos value is TRUE...
+		
+		# Cookie found to resume session, lets read their special info from the cookies
+		$cookie_user	=	$_COOKIE['_USER_'];
+		$cookie_token	=	$_COOKIE['_TOKEN_'];
+		
+		# Implement database calls to validate cookies and proceed to user panel.
+		
+	} else {
+		
+		# Display the login form
+		$html->dump_login_form();
+		
+	}
+	
+} else {
+	
+	# Valid session found. Proceed to user panel
+	header("Location: usercp.php");
+	
+}
+	
+ 
+		
+		# We're not using 
+	
+	
+#	if($config->use_phpbb == TRUE) {
 
 		# User must be logged in on the forums to access this page.
-		$err	=	$error->returnError("AUTH_0002");
+#		$err	=	$error->returnError("AUTH_0002");
 		
 		# Dump the html of our error
-		$html->dump_error($err);
+#		$html->dump_error($err);
 
-	} else {
+#	} else {
 
-		$html->dump_apiForm();
+#		$html->dump_apiForm();
 
-	}
+#	}
 
-} catch(HandleException $e) {
+#} catch(Exception $e) {
 
-	$html->raw_error("There was an error descerning the config file somewhere along the way. {$e->getMessage()}");
+#	$html->raw_error("There was an error descerning the config file somewhere along the way. {$e->getMessage()}");
 
-}
+#}
 
 
 
