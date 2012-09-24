@@ -52,24 +52,80 @@ if(empty($ID) && empty($Token)) { die("Your ID and Key must not be blank"); }
 session_start();
 
 # Include and initialize Pheal...
-include("config.php");
-include("pheal/Pheal.php");
-sql_autoload_register("Pheal::classload");
+include_once("config.php");
+include_once("pheal/Pheal.php");
+spl_autoload_register("Pheal::classload");
 PhealConfig::getInstance()->api_base 		=	"https://api.eveonline.com/"; 
 PhealConfig::getInstance()->api_customkeys	=	TRUE;
 
 # Create a new pheal that holds the players API info in stasis...
-$pheal						=	new Pheal(, NULL);
+$pheal						=	new Pheal($ID, $Token);
 $c						=	new Config;
 
-# Now, let's see if we can do some stuff with that players API info
-try {
+# This page will be done in steps. Sessions will be used to keep track of the step being request, then destroyed
+if(!isset($_SESSION['STEP'])) {
 
-	# Grab the scope (Account, or just Character) of the API info
-	$apiScope				=	$pheal->accountScope->APIKeyInfo();
-	$apiAccountType				=	$apiScope->key->type;
-	$apiAccountExpires			=	$apiScope->key->expires;
+	# Now, let's see if we can do some stuff with that players API info
+	try {
 
-} catch (PhealAPIException $e) {
+		# Grab the scope (Account, or just Character) of the API info
+		$apiScope				=	$pheal->accountScope->APIKeyInfo();
+		$apiAccountType				=	$apiScope->key->type;
+		$apiAccountExpires			=	$apiScope->key->expires;
 
+	} catch (PhealAPIException $e) {
+
+		echo("Error: ".$e->getCode()." || ".$e->getMessage()." || You probably failed to provide a matching id/key pair. [".__LINE__."]");
+		break;
+
+	} catch (PhealException $e) {
+
+		echo("Error: Couldn't get your API details from the CCD Server. Error: ".$e->getMessage()." [".__LINE__."]");
+	}
+
+
+
+	# Ensure that their API Info is of the "Account" type, and not just for a specific character.
+	if($apiAccountType !== "Account") {
+
+		echo("Error: Your key isn't an Account key. Please remedy this issue and come back here");
+	}
+
+	# If their key has an expiration date...
+	if($apiAccountExpires !== "") {
+
+		echo("Error: Your API information expires. Please ensure that it's set to never expire and try again");
+	}
+
+	# Begin looking at a specific character...
 	
+	# Define a session var that holds a small array (no larger than 3 pairs) of character names...
+	$_SESSION['CHARACTERS_ON_ACCOUNT'] = array();
+
+	# For now, let's just make sure we can dump all of the characters tied to the account
+
+	foreach ($pheal->Characters()->characters as $apiCharacter) {
+
+		echo($apiCharacter->name);
+		try {			
+			# Give us a session variable of the array of character names, so we can do error checking later
+			$result = $pheal->CharacterID(array("names" => $apiCharacter->name));
+			$_SESSION['CHARACTERS_ON_ACCOUNT'][$result->characters[0]->characterID] = $apiCharacter->name;
+		} catch (PhealException $e) {
+
+				echo("Pheal Exception! Error: ".$e->getMessage()." [".__LINE__."]");
+		} catch (PhealAPIException $e) {
+
+				echo("Pheal API Exception! Error: ".$e->getMessage()." [".__LINE__."]");
+		}
+
+	}
+	# For testing purposts, dump our session varaibles
+	print_r($_SESSION);
+	$_SESSION['STEP'] = 2;
+} else if($_SESSION['STEP'] == 2) {
+
+	# We're on to step two, looking at the character supplied to us...
+	
+}
+?>
