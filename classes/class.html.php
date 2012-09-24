@@ -68,6 +68,13 @@ class HTML {
 		include_once("html/loginform.inc.html");
 	}
 
+	# Dump our registration form
+	public function dump_registration_form() {
+
+		include_once("html/registrationform.inc.html");
+
+	}
+
 
 	# Dump generic flavored text
 	public function dump_text($string = "Some generic text! Why are you, as user, seeing this? You should probably contact your admin..") {

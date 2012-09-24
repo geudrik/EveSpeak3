@@ -54,15 +54,7 @@ $config		=	new Config;
 $version	=	new Version;
 $html		=	new HTML;
 
-# Start dumping our page..
-$html->dump_header();
 
-
-# Basic page generation..
-
-
-		
-# throw new HandleException(100000, FALSE);
 
 # Use of phpBB as the user base has been scrapped. We will be using our own backend for user authentication.
 #	This allows us much more versatility. Coding in crons to register/deregister is the way to go (allows for flexabiltiy, too)
@@ -78,15 +70,31 @@ if(!isset($_SESSION['SESSION_VALID'])) {
 		$cookie_user	=	$_COOKIE['_USER_'];
 		$cookie_token	=	$_COOKIE['_TOKEN_'];
 		
+		# Check cookie expiry. If expired, go to login. Otherwise, proceed...
 		# Implement database calls to validate cookies and proceed to user panel.
-		
+		# Upon validation against the database (hashed auth string read from cookie) forward to UCP.
+	}
+
+	
+	# We need to check our action, to see if we've got any special pages to show...
+	$action	=	$_GET['action'];
+
+	if($action === "register") {
+
+		$html->dump_header();
+		# We need to display the registration form. This form will submit to /phealsgood.php
+		$html->dump_registration_form();
+		$html->dump_footer();
+
 	} else {
 		
-		# Display the login form
+		$html->dump_header();
+		# When all else fails, display the login form
 		$html->dump_login_form();
-		
+		$html->dump_footer();
+
 	}
-	
+
 } else {
 	
 	# Valid session found. Proceed to user panel
@@ -94,33 +102,4 @@ if(!isset($_SESSION['SESSION_VALID'])) {
 	
 }
 	
- 
-		
-		# We're not using 
-	
-	
-#	if($config->use_phpbb == TRUE) {
-
-		# User must be logged in on the forums to access this page.
-#		$err	=	$error->returnError("AUTH_0002");
-		
-		# Dump the html of our error
-#		$html->dump_error($err);
-
-#	} else {
-
-#		$html->dump_apiForm();
-
-#	}
-
-#} catch(Exception $e) {
-
-#	$html->raw_error("There was an error descerning the config file somewhere along the way. {$e->getMessage()}");
-
-#}
-
-
-
-# Dump our footer
-$html->dump_footer();
 ?>
