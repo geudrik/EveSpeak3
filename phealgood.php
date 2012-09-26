@@ -118,7 +118,7 @@ if(!isset($_SESSION['STEP'])) { # Assume step 1...
 		$result		=	$pheal->Characters()->characters;
 	} catch (PhealAPIException $e) {
 
-		echo("Error: PHEAL Puked. There was an API Issue with the Key/ID Pair. ".$e->getMEssage()."[".__LINE__."]");
+		echo("Error: PHEAL Puked. There was an API Issue with the Key/ID Pair. ".$e->getMessage()."[".__LINE__."]");
 		break;
 
 	} catch (PhealException $e) {
