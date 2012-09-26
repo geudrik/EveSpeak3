@@ -60,6 +60,8 @@ class Config {
 	# The prefix (if any) for phpBB
 	public $phpbb_prefix = "phpbb_";
 
+	# The path that PHEAL can use for caching
+	public $pheal_cache = "/toolbox/GIT/EveSpeak3/phealcache/";
 
 	# Teamspeak 3 group for alliance/corp members
 	public $group = 16;
