@@ -87,12 +87,12 @@ if(!isset($_SESSION['STEP'])) { # Assume step 1...
 	} catch (PhealAPIException $e) {
 
 		echo("Error: ".$e->getCode()." || ".$e->getMessage()." || You probably failed to provide a matching id/key pair. [".__LINE__."]");
-		break;
+		exit();
 
 	} catch (PhealException $e) {
 
 		echo("Error: Couldn't get your API details from the CCD Server. Error: ".$e->getMessage()." [".__LINE__."]");
-		break;
+		exit();
 	}
 
 
@@ -101,55 +101,79 @@ if(!isset($_SESSION['STEP'])) { # Assume step 1...
 	if($apiAccountType !== "Account") {
 
 		echo("Error: Your key isn't an Account key. Please remedy this issue and come back here");
-		break;
+		exit();
 	}
 
 	# If their key has an expiration date...
 	if($apiAccountExpires !== "") {
 
 		echo("Error: Your API information expires. Please ensure that it's set to never expire and try again");
-		break;
+		exit();
 	}
 
-	# We've made it through basic checks on the account. Because we've set a cache above, we're going to create a new pheal using that cache
+
+	# Create a new pheal so we can begin to get character information.
+	#	Once we've got a new pheal, create an array of character names.
+	#	We will then redefine the keys as character ID's for use later.
 	try {
 		$pheal		=	new Pheal($_SESSION['API_ID'], $_SESSION['API_KEY']);
-		$pheal->scope	=	"eve";
-		$result		=	$pheal->Characters()->characters;
+		$result		=	$pheal->Characters();
 	} catch (PhealAPIException $e) {
 
 		echo("Error: PHEAL Puked. There was an API Issue with the Key/ID Pair. ".$e->getMessage()."[".__LINE__."]");
-		break;
+		exit();
 
 	} catch (PhealException $e) {
 
 		echo("Couldn't get API Details from server. Error: ".$e->getMessage()."[".__LINE__."]");
-		break;
+		exit();
 	}
 
 	# Define a session var that holds a small array (no larger than 3 pairs) of character names...
 	$_SESSION['CHARACTERS_ON_ACCOUNT'] = array();
 
 	# For now, let's just make sure we can dump all of the characters tied to the account
-	foreach ($result as $apiCharacter) {
+	foreach ($result->characters as $apiCharacter) {
 
 		# Now we have a character name, let's grab a character ID to store..
+		#$character	=	$apiCharacter->name;
 		$character	=	$apiCharacter->name;
-		echo($character."<br />");
-		array_push($_SESSION['CHARACTERS_ON_ACCOUNT'], $character);
+		$_SESSION['CHARACTERS_ON_ACCOUNT'][$character]	=	$character;
 
 	}
 
-	# Well, Pheal is being dumb an won't let me condense these two pieces together. Have to do it separately..
-	foreach ($_SESSION['CHARACTERS_ON_ACCOUNT'] as $key=>$value) {
 
-		$result = $pheal->CharacterID(array("names" => $value));
-		$id	=	$result->characters[0]->characterID;
+	# Now, we're going to grab character ID's
+	#	Once we've got a given characters ID, redefine the index in our array as that ID
+	#
+	try {
 
-		echo $id;
+		$pheal		=	new Pheal($_SESSION['API_ID'], $_SESSION['API_KEY'], "eve");
+		foreach ($_SESSION['CHARACTERS_ON_ACCOUNT'] as $key => $value) {
+
+			$result = 	$pheal->CharacterID(array("names" => $value));
+			$id	=	$result->characters[0]->characterID;
+			
+			# Create new keypair in our array of characters
+			$_SESSION['CHARACTERS_ON_ACCOUNT'][$id]	=	$value;
+			unset($_SESSION['CHARACTERS_ON_ACCOUNT'][$key]);	
+
+		}
+
+
+	} catch(PhealHTTPException $e) {
+		echo("Pheal Puked. Error: ".$e->getMessage()."[".__LINE__."]");
+		exit();
+	} catch(PhealException $e) {
+		echo("Pheal Puked. Error: ".$e->getMessage()."[".__LINE__."]");
+		exit();
 	}
+
+
 	# For testing purposts, dump our session varaibles
+	echo("<br /><br />\$_SESSION variable...<br /><pre>");
 	print_r($_SESSION);
+	echo("</pre>");
 	
 	# $_SESSION['STEP'] = 2;
 
@@ -158,6 +182,6 @@ if(!isset($_SESSION['STEP'])) { # Assume step 1...
 } else if($_SESSION['STEP'] == 2) {
 
 	# We're on to step two, looking at the character supplied to us...
-	unset($_SESSION['STEP']);
+#	unset($_SESSION['STEP']);
 }
 ?>
