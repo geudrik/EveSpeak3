@@ -138,7 +138,7 @@ if(!isset($_SESSION['STEP'])) { # Assume step 1...
 		# Now we have a character name, let's grab a character ID to store..
 		#$character	=	$apiCharacter->name;
 		$character	=	$apiCharacter->name;
-		$_SESSION['CHARACTERS_ON_ACCOUNT'][$character]	=	$character;
+		$_SESSION['CHARACTERS_ON_ACCOUNT'][$character]	=	array();
 
 	}
 
@@ -151,15 +151,47 @@ if(!isset($_SESSION['STEP'])) { # Assume step 1...
 		$pheal		=	new Pheal($_SESSION['API_ID'], $_SESSION['API_KEY'], "eve");
 		foreach ($_SESSION['CHARACTERS_ON_ACCOUNT'] as $key => $value) {
 
-			$result = 	$pheal->CharacterID(array("names" => $value));
+			$result = 	$pheal->CharacterID(array("names" => $key));
 			$id	=	$result->characters[0]->characterID;
 			
 			# Create new keypair in our array of characters
-			$_SESSION['CHARACTERS_ON_ACCOUNT'][$id]	=	$value;
-			unset($_SESSION['CHARACTERS_ON_ACCOUNT'][$key]);	
+			$_SESSION['CHARACTERS_ON_ACCOUNT'][$key]['id']	=	$id;
+
 
 		}
 
+
+	} catch(PhealHTTPException $e) {
+		echo("Pheal Puked. Error: ".$e->getMessage()."[".__LINE__."]");
+		exit();
+	} catch(PhealException $e) {
+		echo("Pheal Puked. Error: ".$e->getMessage()."[".__LINE__."]");
+		exit();
+	}
+
+print_r($_SESSION);
+
+	# Now that we've got a useable array of character names, let's go ahead and populate it with Corp and Alliance ID's
+	try {
+		
+		# $pheal		=	new Pheal($_SESSION['API_ID'], $_SESSION['API_KEY'], "eve");
+		foreach ($_SESSION['CHARACTERS_ON_ACCOUNT'] as $key => $value) {
+
+
+			$result		=	$pheal->eveScope->CharacterInfo(array('characterID' => $value['id']));
+			$corp		=	$result->corporation;
+			$corpID		=	$result->corporationID;
+			$alliance	=	$result->alliance;
+			$allianceID	=	$result->allianceID;
+
+			echo("Assigned Vars: ".$corp."|".$corpID."|".$alliance."|".$allianceID."<br />");
+
+			# Populate our array....
+			$_SESSION['CHARACTERS_ON_ACCOUNT'][$key]['corporation']		=	$corp;
+			$_SESSION['CHARACTERS_ON_ACCOUNT'][$key]['corporationID']	=	$corpID;
+			$_SESSION['CHARACTERS_ON_ACCOUNT'][$key]['alliance']		=	$alliance;
+			$_SESSION['CHARACTERS_ON_ACCOUNT'][$key]['allianceID']		=	$allianceID;
+		}
 
 	} catch(PhealHTTPException $e) {
 		echo("Pheal Puked. Error: ".$e->getMessage()."[".__LINE__."]");
@@ -177,8 +209,15 @@ if(!isset($_SESSION['STEP'])) { # Assume step 1...
 	
 	# $_SESSION['STEP'] = 2;
 
-	unset($_SESSION['STEP'])
-;
+	unset($_SESSION['STEP']);
+
+
+
+
+	#########################################################################################
+	#####	Basic character information is now attained. Let us now start doing DB work
+	#########################################################################################
+
 } else if($_SESSION['STEP'] == 2) {
 
 	# We're on to step two, looking at the character supplied to us...
