@@ -64,7 +64,9 @@ if(
 
 # Include and initialize Pheal...
 include_once("config.php");
+include_once("classes/class.html.php");
 include_once("pheal/Pheal.php");
+$html						=	new HTML;
 $c						=	new Config;
 spl_autoload_register("Pheal::classload");
 PhealConfig::getInstance()->api_base 		=	"https://api.eveonline.com/"; 
@@ -208,19 +210,29 @@ print_r($_SESSION);
 	echo("</pre>");
 	
 	# $_SESSION['STEP'] = 2;
-
 	unset($_SESSION['STEP']);
 
 
-
-
 	#########################################################################################
-	#####	Basic character information is now attained. Let us now start doing DB work
+	#####	Basic character information is now attained. Ask user to select main character
 	#########################################################################################
+	#####	TODO: Only show characters that fall within the whitelist. Too lazy to that now
+
+	# Time to get the list of characters that actually are allowed to register an account, based on their corpID
+	$html->dump_header();
+	echo("<div>Please select your main character. If you do not select a character that is in the alliance (or otherwise on the whitelist) your registration will fail.</div>");
+	echo("<form action=\"?action=select_character\" method=\"post\">");
+	foreach($_SESSION["CHARACTERS_ON_ACCOUNT"] as $key => $value)
+	{
+		echo("<input type=\"submit\" name=\"".$value['id']."\" value=\"".$key."\" /><br />");
+	}
+	echo("</form>");
+	$html->dump_footer();	
+
 
 } else if($_SESSION['STEP'] == 2) {
 
 	# We're on to step two, looking at the character supplied to us...
-#	unset($_SESSION['STEP']);
+	unset($_SESSION['STEP']);
 }
 ?>

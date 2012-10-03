@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<eveapi version="2">
+  <currentTime>2012-10-01 17:30:28</currentTime>
+  <error code="105">Invalid characterID.</error>
+  <cachedUntil>2012-10-02 05:30:28</cachedUntil>
+</eveapi>

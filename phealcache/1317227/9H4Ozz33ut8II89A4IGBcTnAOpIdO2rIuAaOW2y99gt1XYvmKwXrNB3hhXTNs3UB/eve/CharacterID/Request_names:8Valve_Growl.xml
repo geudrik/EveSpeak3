@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<eveapi version="2">
+  <currentTime>2012-10-01 16:39:07</currentTime>
+  <result>
+    <rowset name="characters" key="characterID" columns="name,characterID">
+      <row name="8Valve Growl" characterID="197744682" />
+    </rowset>
+  </result>
+  <cachedUntil>2012-11-01 16:39:07</cachedUntil>
+</eveapi>

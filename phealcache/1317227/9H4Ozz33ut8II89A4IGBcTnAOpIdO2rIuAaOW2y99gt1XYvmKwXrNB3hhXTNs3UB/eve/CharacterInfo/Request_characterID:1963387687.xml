@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<eveapi version="2">
+  <currentTime>2012-10-03 20:52:07</currentTime>
+  <result>
+    <characterID>1963387687</characterID>
+    <characterName>librarat</characterName>
+    <race>Caldari</race>
+    <bloodline>Deteis</bloodline>
+    <accountBalance>7425257888.03</accountBalance>
+    <skillPoints>86258084</skillPoints>
+    <nextTrainingEnds>2012-10-07 03:37:30</nextTrainingEnds>
+    <shipName>SpunkMonkey</shipName>
+    <shipTypeID>17922</shipTypeID>
+    <shipTypeName>Ashimmu</shipTypeName>
+    <corporationID>890720884</corporationID>
+    <corporation>Mom 'n' Pop Ammo Shoppe</corporation>
+    <corporationDate>2012-01-02 19:58:00</corporationDate>
+    <allianceID>1965209336</allianceID>
+    <alliance>R.E.P.O.</alliance>
+    <allianceDate>2012-01-08 07:59:00</allianceDate>
+    <lastKnownLocation>J131401</lastKnownLocation>
+    <securityStatus>-1.93313266623202</securityStatus>
+    <rowset name="employmentHistory" key="recordID" columns="recordID,corporationID,startDate">
+      <row recordID="18636078" corporationID="890720884" startDate="2012-01-02 19:58:00" />
+      <row recordID="17277401" corporationID="1576171750" startDate="2011-07-04 03:06:00" />
+      <row recordID="16791294" corporationID="1000006" startDate="2011-05-11 03:10:00" />
+      <row recordID="16086702" corporationID="1985905843" startDate="2011-02-13 19:09:00" />
+      <row recordID="15565984" corporationID="151840660" startDate="2010-12-19 20:01:00" />
+      <row recordID="15301565" corporationID="98001066" startDate="2010-11-17 03:21:00" />
+      <row recordID="15301391" corporationID="1000006" startDate="2010-11-17 02:52:00" />
+      <row recordID="15145799" corporationID="1480113774" startDate="2010-10-27 05:06:00" />
+      <row recordID="15138852" corporationID="1000006" startDate="2010-10-26 04:36:00" />
+      <row recordID="14433406" corporationID="151840660" startDate="2010-07-27 04:07:00" />
+      <row recordID="13590555" corporationID="283703232" startDate="2010-04-26 23:34:00" />
+      <row recordID="13544186" corporationID="1000006" startDate="2010-04-21 14:57:00" />
+      <row recordID="13544137" corporationID="283703232" startDate="2010-04-21 14:49:00" />
+      <row recordID="13474194" corporationID="1000006" startDate="2010-04-12 20:02:00" />
+      <row recordID="13134663" corporationID="1437643926" startDate="2010-03-04 02:52:00" />
+      <row recordID="12495523" corporationID="283703232" startDate="2009-12-29 19:41:00" />
+      <row recordID="11840833" corporationID="122713327" startDate="2009-10-18 15:28:00" />
+      <row recordID="11581029" corporationID="1000006" startDate="2009-09-19 05:01:00" />
+      <row recordID="10285152" corporationID="765972147" startDate="2009-06-03 00:47:00" />
+      <row recordID="10285151" corporationID="1000006" startDate="2009-05-31 21:22:00" />
+      <row recordID="10285150" corporationID="2035531556" startDate="2008-03-29 01:34:00" />
+      <row recordID="10285149" corporationID="1000006" startDate="2008-03-29 01:25:00" />
+      <row recordID="10285148" corporationID="647754565" startDate="2007-12-10 03:28:00" />
+      <row recordID="10285147" corporationID="1000006" startDate="2007-12-10 02:13:00" />
+      <row recordID="10285146" corporationID="749147334" startDate="2007-11-30 05:52:00" />
+      <row recordID="10285145" corporationID="1000006" startDate="2007-11-26 04:58:00" />
+      <row recordID="10285144" corporationID="749147334" startDate="2007-10-23 19:36:00" />
+      <row recordID="10285143" corporationID="1000006" startDate="2007-10-21 17:05:00" />
+      <row recordID="10285142" corporationID="647754565" startDate="2007-09-25 01:19:00" />
+      <row recordID="10285141" corporationID="1000006" startDate="2007-07-25 09:09:00" />
+      <row recordID="10285140" corporationID="749147334" startDate="2007-06-17 17:28:00" />
+      <row recordID="10285139" corporationID="1000006" startDate="2007-06-09 03:06:00" />
+      <row recordID="10285138" corporationID="749147334" startDate="2006-08-23 22:45:00" />
+      <row recordID="10285137" corporationID="1000006" startDate="2006-08-23 20:08:00" />
+      <row recordID="10285136" corporationID="263585335" startDate="2006-08-12 19:46:00" />
+      <row recordID="10285135" corporationID="1000006" startDate="2006-08-12 17:44:00" />
+      <row recordID="10285134" corporationID="155603233" startDate="2006-07-31 20:28:00" />
+      <row recordID="10285133" corporationID="1000006" startDate="2006-07-31 19:27:00" />
+      <row recordID="10285132" corporationID="667531913" startDate="2006-06-14 01:17:00" />
+      <row recordID="10285131" corporationID="1000006" startDate="2006-06-11 15:55:00" />
+      <row recordID="10285130" corporationID="644929071" startDate="2006-06-10 20:40:00" />
+      <row recordID="10285129" corporationID="793759087" startDate="2006-06-02 11:55:00" />
+      <row recordID="10285128" corporationID="937013626" startDate="2006-05-29 19:55:00" />
+      <row recordID="10285127" corporationID="661042188" startDate="2006-05-26 00:37:00" />
+      <row recordID="10285126" corporationID="1000006" startDate="2006-05-25 23:03:00" />
+      <row recordID="10285125" corporationID="239113830" startDate="2006-05-25 22:45:00" />
+      <row recordID="10285124" corporationID="1000006" startDate="2006-02-13 13:22:00" />
+      <row recordID="10285123" corporationID="477124788" startDate="2005-06-30 10:46:00" />
+      <row recordID="10285122" corporationID="1000006" startDate="2005-05-10 00:35:00" />
+      <row recordID="10285121" corporationID="1689169958" startDate="2004-12-06 17:02:00" />
+      <row recordID="10285120" corporationID="1000045" startDate="2004-11-24 19:54:00" />
+    </rowset>
+  </result>
+  <cachedUntil>2012-10-03 21:49:07</cachedUntil>
+</eveapi>

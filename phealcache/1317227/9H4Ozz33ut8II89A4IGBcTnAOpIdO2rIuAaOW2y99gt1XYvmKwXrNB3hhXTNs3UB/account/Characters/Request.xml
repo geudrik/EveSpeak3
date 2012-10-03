@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<eveapi version="2">
+  <currentTime>2012-10-03 20:52:05</currentTime>
+  <result>
+    <rowset name="characters" key="characterID" columns="name,characterID,corporationName,corporationID">
+      <row name="8Valve Growl" characterID="197744682" corporationName="State War Academy" corporationID="1000167" />
+      <row name="librarat" characterID="1963387687" corporationName="Mom 'n' Pop Ammo Shoppe" corporationID="890720884" />
+    </rowset>
+  </result>
+  <cachedUntil>2012-10-03 21:20:01</cachedUntil>
+</eveapi>

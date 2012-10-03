@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<eveapi version="2">
+  <currentTime>2012-10-01 16:39:08</currentTime>
+  <result>
+    <rowset name="characters" key="characterID" columns="name,characterID">
+      <row name="librarat" characterID="1963387687" />
+    </rowset>
+  </result>
+  <cachedUntil>2012-11-01 16:39:08</cachedUntil>
+</eveapi>
