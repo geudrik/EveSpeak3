@@ -38,10 +38,13 @@
 ############################################################################################################
 
 class Config {
-
-
-	# Your alliance/corp name
-	public $ourname = "R.E.P.O.";
+	
+	# IMPORTANT - Change these values to reflect the same pattern as the example provided. Once changed, NEVER ALTER THEM or EVERYTHING will break.
+	# Better yet, TODO: Make install script generate the key and iv, and make the admin update this file accordingly.
+	public $encryption_key				=	"&WPVsh<@nubWK!%U3S6eg7h5hE2hgV#Z";
+	public $encryption_iv				=	"i2xLQ,=X:Z~3P&8Bf8F&#kds8nla8390";
+	public $encryption_ciphername			=	MCRYPT_RIJNDAEL_256;
+	public $encrpytion_ciphermode			=	MCRYPT_MODE_CBC;
 
 	# Teamspeak 3 Server Query Information (REQUIRED)
 	public $tshost = "localhost";	# TeamSpeak Address for Server Query
@@ -49,31 +52,27 @@ class Config {
 	public $tspass = "theSApassword";	# ServerQuery Password
 	public $tsport = "10011";	# TeamSpeak3 ServerQuery Port
 	public $tscport = "9987";	# TeamSpeak client port
-
-	# use phpBB?
-	public $use_phpbb = TRUE;
-	# Database Information (REQUIRED)
-	public $db_host = "localhost";
-	public $db_user = "dev_user";
-	public $db_pass = "dev_user";
-	public $db_name = "phpbb";
-	# The prefix (if any) for phpBB
-	public $phpbb_prefix = "phpbb_";
-
-	# The path that PHEAL can use for caching
-	public $pheal_cache = "/toolbox/GIT/EveSpeak3/phealcache/";
-
+	
 	# Teamspeak 3 group for alliance/corp members
 	public $group = 16;
-
+	
 	# Teamspeak 3 group for people on the whitelist
 	public $whitelist = 0;
-
+	
 	# TeamSpeak3 UserName format.
 	# 1 = [SHOP] Librarat
 	# 2 = SHOP | Librarat
 	public $ticker_format = 1;
 
+	# The path that PHEAL can use for caching
+	public $pheal_cache = "/toolbox/GIT/EveSpeak3/phealcache/";
+
+
+
+
+
+	
+	# phpBB Stuff
 	# This should be pretty straight forward... 
 	public $corp_group_ids = array(
 
@@ -94,11 +93,10 @@ class Config {
 
 
 
+
 	### This section contains information for debugging purposes.
 
 	# Debug Mode? (true/false)
 	public $verbose 	= 	false;
 	
-	public $TESTID 		= 	12345678908;
-	public $TESTname 	= 	"librarat";
 }

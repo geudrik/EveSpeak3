@@ -43,13 +43,11 @@ session_start();
 # First things first, lets load up our objects..
 include_once("config.php");
 include_once("version.php");
-include_once("classes/class.errors.php");
-include_once("classes/class.authentication.php");
 include_once("classes/class.html.php");
+include_once("functions.cookies.php");
+include_once("functions.pheal.php");
 
 # Initialze our objects
-$error		=	new ErrorCodes;
-$auth		=	new Authentication;
 $config		=	new Config;
 $version	=	new Version;
 $html		=	new HTML;
