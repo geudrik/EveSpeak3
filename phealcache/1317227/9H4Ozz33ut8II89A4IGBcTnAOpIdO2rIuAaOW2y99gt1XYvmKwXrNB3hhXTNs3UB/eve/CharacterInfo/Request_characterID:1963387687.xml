@@ -1,14 +1,14 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <eveapi version="2">
-  <currentTime>2012-10-03 20:52:07</currentTime>
+  <currentTime>2012-10-17 20:21:56</currentTime>
   <result>
     <characterID>1963387687</characterID>
     <characterName>librarat</characterName>
     <race>Caldari</race>
     <bloodline>Deteis</bloodline>
-    <accountBalance>7425257888.03</accountBalance>
-    <skillPoints>86258084</skillPoints>
-    <nextTrainingEnds>2012-10-07 03:37:30</nextTrainingEnds>
+    <accountBalance>7390257888.03</accountBalance>
+    <skillPoints>86635181</skillPoints>
+    <nextTrainingEnds>2012-11-07 01:48:27</nextTrainingEnds>
     <shipName>SpunkMonkey</shipName>
     <shipTypeID>17922</shipTypeID>
     <shipTypeName>Ashimmu</shipTypeName>
@@ -74,5 +74,5 @@
       <row recordID="10285120" corporationID="1000045" startDate="2004-11-24 19:54:00" />
     </rowset>
   </result>
-  <cachedUntil>2012-10-03 21:49:07</cachedUntil>
+  <cachedUntil>2012-10-17 21:12:59</cachedUntil>
 </eveapi>

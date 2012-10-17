@@ -39,8 +39,30 @@
 
 class Config {
 	
-	# IMPORTANT - Change these values to reflect the same pattern as the example provided. Once changed, NEVER ALTER THEM or EVERYTHING will break.
-	# Better yet, TODO: Make install script generate the key and iv, and make the admin update this file accordingly.
+	/**
+	* Database related varaibles. These should be straight forward
+	*
+	* @param string $db_host The host of the database server
+	* @param string $db_user The username for our database connection
+	* @param string $db_pass The password for our user to connect to the database
+	* @param string $db_name The name of the database we're going to be using
+	*/
+	private $db_host	=	"localhost";
+	private $db_user	=	"dev_user";
+	private $db_pass	=	"dev_pass";
+	private $db_name	=	"evespeak";
+	
+
+	/**
+	* Crypto and Security related variables
+	*
+	* These varaibles are the GLOBAL crypto and security schema. EG: When we're storing data in sessions, we encrypt it. When user data is written to the database, their own IV and Key are used.
+	*
+	* @param string $encrpytion_key The Global KEY used for encryption
+	* @param string $encryption_iv The global IV used for encryption
+	* @param string $encryption_ciphername The name of the cipher we want to use. For security, this should stay as Rijndael
+	* @param string $encryption_ciphermode The ciphermode we want to use. For security, this should stay as CBC (Cipher-Block Chaining)
+	*/
 	public $encryption_key;
 	public $encryption_iv;
 	public $encryption_ciphername;
@@ -48,7 +70,18 @@ class Config {
 	
 	public $validation_substr;
 
-	# Teamspeak 3 Server Query Information (REQUIRED)
+	/**
+	* Teamspeak Related Public Variables. All of these variables are pulled from the database
+	*
+	* @param string $teamspeak_host The host address
+	* @param string $teamspeak_SAName The Server-Admin username (the query user)
+	* @param string $teamspeak_SAPassword The encrypted server-admin password
+	* @param int $teamspeak_query_port The Port that the Query should use to connect to
+	* @param int $teamspeak_client_port The port used for actually connecting to the TS server (for clients)
+	* @param int $teamspeak_alliance_group The TeamSpeak Group ID that members of the parent (ruling) alliance should be put in to
+	* @param int $teamspeak_whitelist_group The TeamSpeak Group ID that users found on the whitelist (renters, for example) should be added to
+	* @param bool $teamspeak_ticker_format This is going to be a quickly depreciated variable, but for now lets describe it as the flag for formatting TICKERS in TeamSpeak
+	*/
 	public $teamspeak_host;
 	public $teamspeak_SAName;
 	public $teamspeak_SAPassword;
@@ -58,15 +91,17 @@ class Config {
 	public $teamspeak_whitelist_group;
 	public $teamspeak_ticker_format;
 	
+	/**
+	* Misc variables
+	*
+	* @param boolean $secure_cookie Should we set/use the secure flag when we're using cookies? If TRUE, you must be on an SSL connection, or cookies will never work
+	* @param string $pheal_cache The ABSOLUTE path where the Pheal library can cache XML documents
+	*/
 	public $secure_cookie;
 
 	# The path that PHEAL can use for caching
 	public $pheal_cache 	= "/toolbox/GIT/EveSpeak3/phealcache/";
 
-	private $db_host	=	"localhost";
-	private $db_user	=	"dev_user";
-	private $db_pass	=	"dev_pass";
-	private $db_name	=	"evespeak";
 
 	/**
 	* Constructor
@@ -106,6 +141,20 @@ class Config {
 	}
 
 
+
+	/**
+	* Quick function to make database connections easier...
+	*
+	* @param string $var Haven't you heard? I thought everyone had heard... Bird bird bird, the bird is the wo.. No, wait. "connect" is the only string accepted. Empty, or anything else, the connection to the db closes.
+	*/
+	public function mysql($var) {
+		if($var = "connect") {
+			mysql_connect($this->db_host, $this->db_user, $this->db_pass) or die("Fatal error. Could not connect to the database<br />".mysql_error());
+			mysql_select_db($this->db_name) or die("Could not conect to the specified database.<br />".mysql_error());
+		} else {
+			mysql_close();
+		}
+	}
 	
 	# phpBB Stuff
 	# This should be pretty straight forward... 

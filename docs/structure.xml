@@ -1,127 +1,237 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project version="2.0.0a10" title="">
+  <file path="register.php" hash="699272067a92906a3f6aeacc8569a496" package="Default">
+    <include line="42" type="Include Once" package="Default">
+      <name>config.php</name>
+    </include>
+    <include line="43" type="Include Once" package="Default">
+      <name>pheal/Pheal.php</name>
+    </include>
+    <include line="44" type="Include Once" package="Default">
+      <name>classes/class.phealgood.php</name>
+    </include>
+    <include line="45" type="Include Once" package="Default">
+      <name>classes/class.cookies.php</name>
+    </include>
+    <include line="46" type="Include Once" package="Default">
+      <name>classes/class.crypto.php</name>
+    </include>
+    <include line="47" type="Include Once" package="Default">
+      <name>classes/class.html.php</name>
+    </include>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file register.php</error>
+    </parse_markers>
+  </file>
   <file path="html/index.php" hash="d41d8cd98f00b204e9800998ecf8427e" package="Default">
     <parse_markers>
       <error line="0" code="50007">No page-level DocBlock was found in file html/index.php</error>
     </parse_markers>
   </file>
-  <file path="config.php" hash="39b0b9290801fee2e4d7679551a3b937" package="Default">
+  <file path="config.php" hash="0c42e4c75a172f37c748d24959a49f8b" package="Default">
     <class final="false" abstract="false" namespace="global" line="40" package="Default">
       <extends/>
       <name>Config</name>
       <full_name>\Config</full_name>
-      <property final="false" static="false" visibility="public" line="44" namespace="global" package="Default">
-        <name>$encryption_key</name>
-        <default><![CDATA[]]></default>
+      <property final="false" static="false" visibility="private" line="50" namespace="global" package="Default">
+        <name>$db_host</name>
+        <default><![CDATA["localhost"]]></default>
+        <docblock line="42">
+          <description><![CDATA[Database related varaibles.]]></description>
+          <long-description><![CDATA[<p>These should be straight forward</p>]]></long-description>
+          <tag line="42" name="param" description="The host of the database server" type="string" variable="$db_host">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="42" name="param" description="The username for our database connection" type="string" variable="$db_user">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="42" name="param" description="The password for our user to connect to the database" type="string" variable="$db_pass">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="42" name="param" description="The name of the database we're going to be using" type="string" variable="$db_name">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
       </property>
-      <property final="false" static="false" visibility="public" line="45" namespace="global" package="Default">
-        <name>$encryption_iv</name>
-        <default><![CDATA[]]></default>
-      </property>
-      <property final="false" static="false" visibility="public" line="46" namespace="global" package="Default">
-        <name>$encryption_ciphername</name>
-        <default><![CDATA[]]></default>
-      </property>
-      <property final="false" static="false" visibility="public" line="47" namespace="global" package="Default">
-        <name>$encrpytion_ciphermode</name>
-        <default><![CDATA[]]></default>
-      </property>
-      <property final="false" static="false" visibility="public" line="49" namespace="global" package="Default">
-        <name>$validation_substr</name>
-        <default><![CDATA[]]></default>
-      </property>
-      <property final="false" static="false" visibility="public" line="52" namespace="global" package="Default">
-        <name>$teamspeak_host</name>
-        <default><![CDATA[]]></default>
-      </property>
-      <property final="false" static="false" visibility="public" line="53" namespace="global" package="Default">
-        <name>$teamspeak_SAName</name>
-        <default><![CDATA[]]></default>
-      </property>
-      <property final="false" static="false" visibility="public" line="54" namespace="global" package="Default">
-        <name>$teamspeak_SAPassword</name>
-        <default><![CDATA[]]></default>
-      </property>
-      <property final="false" static="false" visibility="public" line="55" namespace="global" package="Default">
-        <name>$teamspeak_query_port</name>
-        <default><![CDATA[]]></default>
-      </property>
-      <property final="false" static="false" visibility="public" line="56" namespace="global" package="Default">
-        <name>$teamspeak_client_port</name>
-        <default><![CDATA[]]></default>
-      </property>
-      <property final="false" static="false" visibility="public" line="57" namespace="global" package="Default">
-        <name>$teamspeak_alliance_group</name>
-        <default><![CDATA[]]></default>
-      </property>
-      <property final="false" static="false" visibility="public" line="58" namespace="global" package="Default">
-        <name>$teamspeak_whitelist_group</name>
-        <default><![CDATA[]]></default>
-      </property>
-      <property final="false" static="false" visibility="public" line="59" namespace="global" package="Default">
-        <name>$teamspeak_ticker_formet</name>
-        <default><![CDATA[]]></default>
-      </property>
-      <property final="false" static="false" visibility="public" line="61" namespace="global" package="Default">
-        <name>$secure_cookie</name>
-        <default><![CDATA[]]></default>
-      </property>
-      <property final="false" static="false" visibility="public" line="64" namespace="global" package="Default">
-        <name>$pheal_cache</name>
-        <default><![CDATA["/toolbox/GIT/EveSpeak3/phealcache/"]]></default>
-      </property>
-      <property final="false" static="false" visibility="private" line="67" namespace="global" package="Default">
+      <property final="false" static="false" visibility="private" line="51" namespace="global" package="Default">
         <name>$db_user</name>
-        <default><![CDATA["devuser"]]></default>
+        <default><![CDATA["dev_user"]]></default>
       </property>
-      <property final="false" static="false" visibility="private" line="68" namespace="global" package="Default">
+      <property final="false" static="false" visibility="private" line="52" namespace="global" package="Default">
         <name>$db_pass</name>
-        <default><![CDATA["devpass"]]></default>
+        <default><![CDATA["dev_pass"]]></default>
       </property>
-      <property final="false" static="false" visibility="private" line="69" namespace="global" package="Default">
+      <property final="false" static="false" visibility="private" line="53" namespace="global" package="Default">
         <name>$db_name</name>
         <default><![CDATA["evespeak"]]></default>
       </property>
-      <property final="false" static="false" visibility="public" line="111" namespace="global" package="Default">
+      <property final="false" static="false" visibility="public" line="66" namespace="global" package="Default">
+        <name>$encryption_key</name>
+        <default><![CDATA[]]></default>
+        <docblock line="56">
+          <description><![CDATA[Crypto and Security related variables]]></description>
+          <long-description><![CDATA[<p>These varaibles are the GLOBAL crypto and security schema. EG: When we're storing data in sessions, we encrypt it. When user data is written to the database, their own IV and Key are used.</p>]]></long-description>
+          <tag line="56" name="param" description="The Global KEY used for encryption" type="string" variable="$encrpytion_key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="56" name="param" description="The global IV used for encryption" type="string" variable="$encryption_iv">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="56" name="param" description="The name of the cipher we want to use. For security, this should stay as Rijndael" type="string" variable="$encryption_ciphername">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="56" name="param" description="The ciphermode we want to use. For security, this should stay as CBC (Cipher-Block Chaining)" type="string" variable="$encryption_ciphermode">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="67" namespace="global" package="Default">
+        <name>$encryption_iv</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="68" namespace="global" package="Default">
+        <name>$encryption_ciphername</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="69" namespace="global" package="Default">
+        <name>$encryption_ciphermode</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="71" namespace="global" package="Default">
+        <name>$validation_substr</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="85" namespace="global" package="Default">
+        <name>$teamspeak_host</name>
+        <default><![CDATA[]]></default>
+        <docblock line="73">
+          <description><![CDATA[Teamspeak Related Public Variables.]]></description>
+          <long-description><![CDATA[<p>All of these variables are pulled from the database</p>]]></long-description>
+          <tag line="73" name="param" description="The host address" type="string" variable="$teamspeak_host">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="73" name="param" description="The Server-Admin username (the query user)" type="string" variable="$teamspeak_SAName">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="73" name="param" description="The encrypted server-admin password" type="string" variable="$teamspeak_SAPassword">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="73" name="param" description="The Port that the Query should use to connect to" type="int" variable="$teamspeak_query_port">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="73" name="param" description="The port used for actually connecting to the TS server (for clients)" type="int" variable="$teamspeak_client_port">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="73" name="param" description="The TeamSpeak Group ID that members of the parent (ruling) alliance should be put in to" type="int" variable="$teamspeak_alliance_group">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="73" name="param" description="The TeamSpeak Group ID that users found on the whitelist (renters, for example) should be added to" type="int" variable="$teamspeak_whitelist_group">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="73" name="param" description="This is going to be a quickly depreciated variable, but for now lets describe it as the flag for formatting TICKERS in TeamSpeak" type="bool" variable="$teamspeak_ticker_format">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="86" namespace="global" package="Default">
+        <name>$teamspeak_SAName</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="87" namespace="global" package="Default">
+        <name>$teamspeak_SAPassword</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="88" namespace="global" package="Default">
+        <name>$teamspeak_query_port</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="89" namespace="global" package="Default">
+        <name>$teamspeak_client_port</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="90" namespace="global" package="Default">
+        <name>$teamspeak_alliance_group</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="91" namespace="global" package="Default">
+        <name>$teamspeak_whitelist_group</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="92" namespace="global" package="Default">
+        <name>$teamspeak_ticker_format</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="100" namespace="global" package="Default">
+        <name>$secure_cookie</name>
+        <default><![CDATA[]]></default>
+        <docblock line="94">
+          <description><![CDATA[Misc variables]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="94" name="param" description="Should we set/use the secure flag when we're using cookies? If TRUE, you must be on an SSL connection, or cookies will never work" type="boolean" variable="$secure_cookie">
+            <type by_reference="false">boolean</type>
+          </tag>
+          <tag line="94" name="param" description="The ABSOLUTE path where the Pheal library can cache XML documents" type="string" variable="$pheal_cache">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="103" namespace="global" package="Default">
+        <name>$pheal_cache</name>
+        <default><![CDATA["/toolbox/GIT/EveSpeak3/phealcache/"]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="161" namespace="global" package="Default">
         <name>$corp_group_ids</name>
         <default><![CDATA[array(164893220 => 8, 98052336 => 9, 536016894 => 10, 583396001 => 11, 890720884 => 12, 1313553624 => 13, 1405531951 => 14, 1452329886 => 15, 98097265 => 16, 98127028 => 17, 98133741 => 18)]]></default>
       </property>
-      <property final="false" static="false" visibility="public" line="134" namespace="global" package="Default">
+      <property final="false" static="false" visibility="public" line="184" namespace="global" package="Default">
         <name>$verbose</name>
         <default><![CDATA[false]]></default>
       </property>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="77" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="112" package="Default">
         <name>__construct</name>
         <full_name>__construct</full_name>
-        <docblock line="71">
+        <docblock line="106">
           <description><![CDATA[Constructor]]></description>
           <long-description><![CDATA[<p>Magic method to populate our Config class with variables from our database.</p>]]></long-description>
         </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="150" package="Default">
+        <name>mysql</name>
+        <full_name>mysql</full_name>
+        <docblock line="145">
+          <description><![CDATA[Quick function to make database connections easier.]]></description>
+          <long-description><![CDATA[<p>..</p>]]></long-description>
+          <tag line="145" name="param" description="Haven't you heard? I thought everyone had heard... Bird bird bird, the bird is the wo.. No, wait. &quot;connect&quot; is the only string accepted. Empty, or anything else, the connection to the db closes." type="string" variable="$var">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="150">
+          <name>$var</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
       </method>
     </class>
     <parse_markers>
       <error line="0" code="50007">No page-level DocBlock was found in file config.php</error>
       <error line="40" code="50000">No DocBlock was found for \Config</error>
-      <error line="44" code="50018">No DocBlock was found for property $encryption_key</error>
-      <error line="45" code="50018">No DocBlock was found for property $encryption_iv</error>
-      <error line="46" code="50018">No DocBlock was found for property $encryption_ciphername</error>
-      <error line="47" code="50018">No DocBlock was found for property $encrpytion_ciphermode</error>
-      <error line="49" code="50018">No DocBlock was found for property $validation_substr</error>
-      <error line="52" code="50018">No DocBlock was found for property $teamspeak_host</error>
-      <error line="53" code="50018">No DocBlock was found for property $teamspeak_SAName</error>
-      <error line="54" code="50018">No DocBlock was found for property $teamspeak_SAPassword</error>
-      <error line="55" code="50018">No DocBlock was found for property $teamspeak_query_port</error>
-      <error line="56" code="50018">No DocBlock was found for property $teamspeak_client_port</error>
-      <error line="57" code="50018">No DocBlock was found for property $teamspeak_alliance_group</error>
-      <error line="58" code="50018">No DocBlock was found for property $teamspeak_whitelist_group</error>
-      <error line="59" code="50018">No DocBlock was found for property $teamspeak_ticker_formet</error>
-      <error line="61" code="50018">No DocBlock was found for property $secure_cookie</error>
-      <error line="64" code="50018">No DocBlock was found for property $pheal_cache</error>
-      <error line="67" code="50018">No DocBlock was found for property $db_user</error>
-      <error line="68" code="50018">No DocBlock was found for property $db_pass</error>
-      <error line="69" code="50018">No DocBlock was found for property $db_name</error>
-      <error line="111" code="50018">No DocBlock was found for property $corp_group_ids</error>
-      <error line="134" code="50018">No DocBlock was found for property $verbose</error>
+      <error line="51" code="50018">No DocBlock was found for property $db_user</error>
+      <error line="52" code="50018">No DocBlock was found for property $db_pass</error>
+      <error line="53" code="50018">No DocBlock was found for property $db_name</error>
+      <error line="67" code="50018">No DocBlock was found for property $encryption_iv</error>
+      <error line="68" code="50018">No DocBlock was found for property $encryption_ciphername</error>
+      <error line="69" code="50018">No DocBlock was found for property $encryption_ciphermode</error>
+      <error line="71" code="50018">No DocBlock was found for property $validation_substr</error>
+      <error line="86" code="50018">No DocBlock was found for property $teamspeak_SAName</error>
+      <error line="87" code="50018">No DocBlock was found for property $teamspeak_SAPassword</error>
+      <error line="88" code="50018">No DocBlock was found for property $teamspeak_query_port</error>
+      <error line="89" code="50018">No DocBlock was found for property $teamspeak_client_port</error>
+      <error line="90" code="50018">No DocBlock was found for property $teamspeak_alliance_group</error>
+      <error line="91" code="50018">No DocBlock was found for property $teamspeak_whitelist_group</error>
+      <error line="92" code="50018">No DocBlock was found for property $teamspeak_ticker_format</error>
+      <error line="103" code="50018">No DocBlock was found for property $pheal_cache</error>
+      <error line="161" code="50018">No DocBlock was found for property $corp_group_ids</error>
+      <error line="184" code="50018">No DocBlock was found for property $verbose</error>
     </parse_markers>
   </file>
   <file path="_template.php" hash="eb04a156c335df6a666d710c04dc8228" package="Default">
@@ -129,7 +239,7 @@
       <error line="0" code="50007">No page-level DocBlock was found in file _template.php</error>
     </parse_markers>
   </file>
-  <file path="index.php" hash="4a969c45fab749520adb768c9ebba286" package="Default">
+  <file path="index.php" hash="2c041ebbaa9c3298761bb496956c7d4b" package="Default">
     <include line="49" type="Include Once" package="Default">
       <name>config.php</name>
     </include>
@@ -405,7 +515,7 @@ Note: This function will ALWAYS return something, even if it's not what you want
       <error line="47" code="50018">No DocBlock was found for property $cipherMode</error>
     </parse_markers>
   </file>
-  <file path="classes/class.phealgood.php" hash="86acd1c950b5bfe498e717a47f3c9548" package="Default">
+  <file path="classes/class.phealgood.php" hash="2b461f1eb35ef70f8ecb9870bff6b3b8" package="Default">
     <class final="false" abstract="false" namespace="global" line="40" package="Default">
       <extends/>
       <name>PhealGood</name>

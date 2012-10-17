@@ -121,7 +121,7 @@ class PhealGood {
 			# Create array of character names.
 			try {
 				$this->pheal		=	$this->pheal_holder;
-				$result			=	$pheal->Characters();
+				$result			=	$this->pheal->Characters();
 			} catch (PhealAPIException $e) {
 				return ("Error: PHEAL Puked. There was an API Issue with the Key/ID Pair. ".$e->getMessage().__FILE__.":".__LINE__."]");
 
@@ -154,7 +154,7 @@ class PhealGood {
 					$id	=	$result->characters[0]->characterID;
 					
 					# Create new keypair in our array of characters
-					$_SESSION['CHARACTERS_ON_ACCOUNT'][$key]['id']	=	$id;
+					$_SESSION['CHARACTERS_ON_ACCOUNT'][$key]['id']	=	(int) $id;
 				}
 
 			} catch(PhealHTTPException $e) {
@@ -176,10 +176,10 @@ class PhealGood {
 					$allianceID	=	$result->allianceID;
 
 					# Populate our array....
-					$_SESSION['CHARACTERS_ON_ACCOUNT'][$key]['corporation']		=	$corp;
-					$_SESSION['CHARACTERS_ON_ACCOUNT'][$key]['corporationID']	=	$corpID;
-					$_SESSION['CHARACTERS_ON_ACCOUNT'][$key]['alliance']		=	$alliance;
-					$_SESSION['CHARACTERS_ON_ACCOUNT'][$key]['allianceID']		=	$allianceID;
+					$_SESSION['CHARACTERS_ON_ACCOUNT'][$key]['corporation']		=	(string) $corp;
+					$_SESSION['CHARACTERS_ON_ACCOUNT'][$key]['corporationID']	=	(int) $corpID;
+					$_SESSION['CHARACTERS_ON_ACCOUNT'][$key]['alliance']		=	(string) $alliance;
+					$_SESSION['CHARACTERS_ON_ACCOUNT'][$key]['allianceID']		=	(int) $allianceID;
 				}
 
 			} catch(PhealHTTPException $e) {
