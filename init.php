@@ -47,6 +47,6 @@ $string = "The quick brown fox...";
 
 echo("Original String: $string<br />");
 
-$encrypted = $cry->Encrypt_String($string);
+$encrypted = $cry->Encrypt_String($string, TRUE);
 echo("Encrypted String: $encrypted<br />");
-echo("Decrypted String: ".$cry->Decrypt_String($encrypted));
+echo("Decrypted String: ".$cry->Decrypt_String($encrypted, TRUE));

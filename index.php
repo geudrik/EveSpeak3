@@ -40,6 +40,11 @@
 ini_set('error_reporting', E_ALL);
 session_start();
 
+if(isset($_SESSION['SESSION_VALID'])) {
+
+	header("Location: usercp.php");
+}
+
 # First things first, lets load up our objects..
 include_once("config.php");
 include_once("version.php");
@@ -71,6 +76,19 @@ if(!isset($_SESSION['SESSION_VALID'])) {
 		# Check cookie expiry. If expired, go to login. Otherwise, proceed...
 		# Implement database calls to validate cookies and proceed to user panel.
 		# Upon validation against the database (hashed auth string read from cookie) forward to UCP.
+
+		# Look for our unique string.. helps with validation that the cookie isn't forged
+		if( 
+			(substr($cookie_user, 0, 6) != $config->validation_substr) && 
+			(substr($cookie_token, 0, 6) != $config->validation_substr) 
+		) {
+
+			# We've just checked to make sure that the cookie values contain our secret substring... now lets do cool things with them
+			
+
+		} else { header("Location: index.php?action=register"); }
+
+			
 	}
 
 	
@@ -93,11 +111,6 @@ if(!isset($_SESSION['SESSION_VALID'])) {
 
 	}
 
-} else {
-	
-	# Valid session found. Proceed to user panel
-	header("Location: usercp.php");
-	
 }
 	
 ?>

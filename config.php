@@ -45,6 +45,8 @@ class Config {
 	public $encryption_iv				=	"i2xLQ,=X:Z~3P&8Bf8F&#kds8nla8390";
 	public $encryption_ciphername			=	MCRYPT_RIJNDAEL_256;
 	public $encrpytion_ciphermode			=	MCRYPT_MODE_CBC;
+	
+	public $validation_substr			=	"3R8!UM";
 
 	# Teamspeak 3 Server Query Information (REQUIRED)
 	public $tshost = "localhost";	# TeamSpeak Address for Server Query
@@ -68,7 +70,27 @@ class Config {
 	public $pheal_cache = "/toolbox/GIT/EveSpeak3/phealcache/";
 
 
+	private $db_user	=	"devuser";
+	private $db_pass	=	"devpass";
+	private $db_name	=	"evespeak";
 
+	public function __construct() {
+
+		mysql_connect($this->db_user, $this->db_pass, $this->db_name) or die("Fatal error right off the bat. Pat fails.<br />".mysql_error());
+
+		$sql	=	"SELECT * FROM config";
+		$result	=	mysql_query($sql) or die("Pat fails... error: ".mysql_error());
+		
+		if(!empty(mysql_fetch_array($result))) {
+
+			public $
+			
+
+		}
+
+			
+
+	}
 
 
 	
