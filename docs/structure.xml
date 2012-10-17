@@ -1,46 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project version="2.0.0a10" title="">
-  <file path="functions.cookies.php" hash="2b89e30bc681ffd26c987c28627cc53b" package="Default">
-    <function namespace="global" line="44" package="Default">
-      <name>set_remember_me</name>
-      <full_name>\set_remember_me</full_name>
-      <argument line="44">
-        <name>$username</name>
-        <default><![CDATA[]]></default>
-        <type/>
-      </argument>
-      <argument line="44">
-        <name>$usertoken</name>
-        <default><![CDATA[]]></default>
-        <type/>
-      </argument>
-      <argument line="44">
-        <name>$secure_cookie</name>
-        <default><![CDATA[FALSE]]></default>
-        <type/>
-      </argument>
-      <argument line="44">
-        <name>$cookie_expiry</name>
-        <default><![CDATA[30]]></default>
-        <type/>
-      </argument>
-    </function>
-    <function namespace="global" line="55" package="Default">
-      <name>validate_remember_me</name>
-      <full_name>\validate_remember_me</full_name>
-      <argument line="55">
-        <name>$key</name>
-        <default><![CDATA[]]></default>
-        <type/>
-      </argument>
-    </function>
-    <parse_markers>
-      <error line="0" code="50007">No page-level DocBlock was found in file functions.cookies.php</error>
-      <error line="44" code="50009">No DocBlock was found for function \set_remember_me()</error>
-      <error line="55" code="50009">No DocBlock was found for function \validate_remember_me()</error>
-    </parse_markers>
-  </file>
-  <file path="register.php" hash="205dbe6b9947c5464162c451d08356c8" package="Default"/>
   <file path="html/index.php" hash="d41d8cd98f00b204e9800998ecf8427e" package="Default">
     <parse_markers>
       <error line="0" code="50007">No page-level DocBlock was found in file html/index.php</error>
@@ -203,6 +162,131 @@
       <error line="128" code="50010">No DocBlock was found for method __construct()</error>
     </parse_markers>
   </file>
+  <file path="classes/class.crypto.php" hash="f9e750fe3ef5f705458f95acbb2b7e22" package="Default">
+    <class final="false" abstract="false" namespace="global" line="42" package="Default">
+      <extends/>
+      <name>Crypto</name>
+      <full_name>\Crypto</full_name>
+      <property final="false" static="false" visibility="private" line="44" namespace="global" package="Default">
+        <name>$iv</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="private" line="45" namespace="global" package="Default">
+        <name>$key</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="private" line="46" namespace="global" package="Default">
+        <name>$cipher</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="private" line="47" namespace="global" package="Default">
+        <name>$cipherMode</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="62" package="Default">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="49">
+          <description><![CDATA[Magic Instantiation Method]]></description>
+          <long-description><![CDATA[<p>When we instantiate this class, we must remember to use __construct to our advantage.
+All variables passed to __construct should be populated within a session variable, set by the instantiation of Config
+Instantiate via $class = new Crypto($iv, $key, [optional]$cipher, [optional]$cipherMode);</p>]]></long-description>
+          <tag line="49" name="param" description="REQUIRED: The Initialization Vector for this session" type="string" variable="$iv">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="49" name="param" description="REQUIRED: The Key to be used for this session" type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="49" name="param" description="The Cipher to use (defaults to MRCYPT_RIJNDAEL_256)" type="string" variable="$cipher">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="49" name="param" description="The encryption mode to use (defaults to MCRYPT_MODE_CBC)" type="string" variable="$cipherMode">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="62">
+          <name>$iv</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="62">
+          <name>$key</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="62">
+          <name>$cipher</name>
+          <default><![CDATA[MCRYPT_RIJNDAEL_256]]></default>
+          <type/>
+        </argument>
+        <argument line="62">
+          <name>$cipherMode</name>
+          <default><![CDATA[MCRYPT_MODE_CBC]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="82" package="Default">
+        <name>Encrypt_String</name>
+        <full_name>Encrypt_String</full_name>
+        <docblock line="70">
+          <description><![CDATA[Encrypt a string]]></description>
+          <long-description><![CDATA[<p>This function ecnrypts a string, based on the parameters passed to it
+Note: This function will ALWAYS return something, even if it's not what you want. A string is the returned result. Make sure that when you instantiate this class, you set your varaibles properly!</p>]]></long-description>
+          <tag line="70" name="since" description="1.0"/>
+          <tag line="70" name="param" description="The unencrypted string to encrypt" type="string" variable="$string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="70" name="param" description="TRUE or FALSE - ENCODE our encrypted string before returning (DEFAULT: TRUE)" type="bool" variable="$base64">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="82">
+          <name>$string</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="82">
+          <name>$base64</name>
+          <default><![CDATA[TRUE]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="111" package="Default">
+        <name>Decrypt_String</name>
+        <full_name>Decrypt_String</full_name>
+        <docblock line="99">
+          <description><![CDATA[Decrypt a string]]></description>
+          <long-description><![CDATA[<p>This function decrypts a string, based on the parameters passed to it
+Note: This function will ALWAYS return something, even if it's not what you want. A string is the returned result. Make sure that when you instantiate this class, you set your varaibles properly!</p>]]></long-description>
+          <tag line="99" name="since" description="1.0"/>
+          <tag line="99" name="param" description="The encrypted string, which CAN be base64 encoded, to decrypt" type="string" variable="$string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="99" name="param" description="TRUE or FALSE - Do we need to DECODE our scring before ecnryption (DEFAULT: TRUE)" type="bool" variable="$base64">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="111">
+          <name>$string</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="111">
+          <name>$base64</name>
+          <default><![CDATA[TRUE]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file classes/class.crypto.php</error>
+      <error line="42" code="50000">No DocBlock was found for \Crypto</error>
+      <error line="44" code="50018">No DocBlock was found for property $iv</error>
+      <error line="45" code="50018">No DocBlock was found for property $key</error>
+      <error line="46" code="50018">No DocBlock was found for property $cipher</error>
+      <error line="47" code="50018">No DocBlock was found for property $cipherMode</error>
+    </parse_markers>
+  </file>
   <file path="classes/index.php" hash="d41d8cd98f00b204e9800998ecf8427e" package="Default">
     <parse_markers>
       <error line="0" code="50007">No page-level DocBlock was found in file classes/index.php</error>
@@ -286,6 +370,46 @@
       <error line="94" code="50010">No DocBlock was found for method raw_error()</error>
     </parse_markers>
   </file>
+  <file path="classes/class.cookies.php" hash="2b89e30bc681ffd26c987c28627cc53b" package="Default">
+    <function namespace="global" line="44" package="Default">
+      <name>set_remember_me</name>
+      <full_name>\set_remember_me</full_name>
+      <argument line="44">
+        <name>$username</name>
+        <default><![CDATA[]]></default>
+        <type/>
+      </argument>
+      <argument line="44">
+        <name>$usertoken</name>
+        <default><![CDATA[]]></default>
+        <type/>
+      </argument>
+      <argument line="44">
+        <name>$secure_cookie</name>
+        <default><![CDATA[FALSE]]></default>
+        <type/>
+      </argument>
+      <argument line="44">
+        <name>$cookie_expiry</name>
+        <default><![CDATA[30]]></default>
+        <type/>
+      </argument>
+    </function>
+    <function namespace="global" line="55" package="Default">
+      <name>validate_remember_me</name>
+      <full_name>\validate_remember_me</full_name>
+      <argument line="55">
+        <name>$key</name>
+        <default><![CDATA[]]></default>
+        <type/>
+      </argument>
+    </function>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file classes/class.cookies.php</error>
+      <error line="44" code="50009">No DocBlock was found for function \set_remember_me()</error>
+      <error line="55" code="50009">No DocBlock was found for function \validate_remember_me()</error>
+    </parse_markers>
+  </file>
   <file path="init.php" hash="37834222e039d82af1c9d1d227e0b487" package="Default">
     <include line="40" type="Include Once" package="Default">
       <name>config.php</name>
@@ -295,131 +419,6 @@
     </include>
     <parse_markers>
       <error line="0" code="50007">No page-level DocBlock was found in file init.php</error>
-    </parse_markers>
-  </file>
-  <file path="functions.crypto.php" hash="c46b4d96589412bc33dc8ca755a4d4c8" package="Default">
-    <class final="false" abstract="false" namespace="global" line="42" package="Default">
-      <extends/>
-      <name>Crypto</name>
-      <full_name>\Crypto</full_name>
-      <property final="false" static="false" visibility="private" line="44" namespace="global" package="Default">
-        <name>$iv</name>
-        <default><![CDATA[]]></default>
-      </property>
-      <property final="false" static="false" visibility="private" line="45" namespace="global" package="Default">
-        <name>$key</name>
-        <default><![CDATA[]]></default>
-      </property>
-      <property final="false" static="false" visibility="private" line="46" namespace="global" package="Default">
-        <name>$cipher</name>
-        <default><![CDATA[]]></default>
-      </property>
-      <property final="false" static="false" visibility="private" line="47" namespace="global" package="Default">
-        <name>$cipherMode</name>
-        <default><![CDATA[]]></default>
-      </property>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="62" package="Default">
-        <name>__construct</name>
-        <full_name>__construct</full_name>
-        <docblock line="49">
-          <description><![CDATA[Magic Instantiation Method]]></description>
-          <long-description><![CDATA[<p>When we instantiate this class, we must remember to use __construct to our advantage.
-All variables passed to __construct should be populated within a session variable, set by the instantiation of Config
-Instantiate via $class = new Crypto($iv, $key, [optional]$cipher, [optional]$cipherMode);</p>]]></long-description>
-          <tag line="49" name="param" description="REQUIRED: The Initialization Vector for this session" type="string" variable="$iv">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="49" name="param" description="REQUIRED: The Key to be used for this session" type="string" variable="$key">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="49" name="param" description="The Cipher to use (defaults to MRCYPT_RIJNDAEL_256)" type="string" variable="$cipher">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="49" name="param" description="The encryption mode to use (defaults to MCRYPT_MODE_CBC)" type="string" variable="$cipherMode">
-            <type by_reference="false">string</type>
-          </tag>
-        </docblock>
-        <argument line="62">
-          <name>$iv</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-        <argument line="62">
-          <name>$key</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-        <argument line="62">
-          <name>$cipher</name>
-          <default><![CDATA[MCRYPT_RIJNDAEL_256]]></default>
-          <type/>
-        </argument>
-        <argument line="62">
-          <name>$cipherMode</name>
-          <default><![CDATA[MCRYPT_MODE_CBC]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="82" package="Default">
-        <name>Encrypt_String</name>
-        <full_name>Encrypt_String</full_name>
-        <docblock line="70">
-          <description><![CDATA[Encrypt a string]]></description>
-          <long-description><![CDATA[<p>This function ecnrypts a string, based on the parameters passed to it
-Note: This function will ALWAYS return something, even if it's not what you want. A string is the returned result. Make sure that wen you instantiate this class, you set your varaibles properly!</p>]]></long-description>
-          <tag line="70" name="since" description="1.0"/>
-          <tag line="70" name="param" description="The unencrypted string to encrypt" type="string" variable="$string">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="70" name="param" description="TRUE or FALSE - ENCODE our encrypted string before returning (DEFAULT: TRUE)" type="bool" variable="$base64">
-            <type by_reference="false">bool</type>
-          </tag>
-        </docblock>
-        <argument line="82">
-          <name>$string</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-        <argument line="82">
-          <name>$base64</name>
-          <default><![CDATA[TRUE]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="111" package="Default">
-        <name>Decrypt_String</name>
-        <full_name>Decrypt_String</full_name>
-        <docblock line="99">
-          <description><![CDATA[Decrypt a string]]></description>
-          <long-description><![CDATA[<p>This function decrypts a string, based on the parameters passed to it
-Note: This function will ALWAYS return something, even if it's not what you want. A string is the returned result. Make sure that wen you instantiate this class, you set your varaibles properly!</p>]]></long-description>
-          <tag line="99" name="since" description="1.0"/>
-          <tag line="99" name="param" description="The encrypted string, which CAN be base64 encoded, to decrypt" type="string" variable="$string">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="99" name="param" description="TRUE or FALSE - Do we need to DECODE our scring before ecnryption (DEFAULT: TRUE)" type="bool" variable="$base64">
-            <type by_reference="false">bool</type>
-          </tag>
-        </docblock>
-        <argument line="111">
-          <name>$string</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-        <argument line="111">
-          <name>$base64</name>
-          <default><![CDATA[TRUE]]></default>
-          <type/>
-        </argument>
-      </method>
-    </class>
-    <parse_markers>
-      <error line="0" code="50007">No page-level DocBlock was found in file functions.crypto.php</error>
-      <error line="42" code="50000">No DocBlock was found for \Crypto</error>
-      <error line="44" code="50018">No DocBlock was found for property $iv</error>
-      <error line="45" code="50018">No DocBlock was found for property $key</error>
-      <error line="46" code="50018">No DocBlock was found for property $cipher</error>
-      <error line="47" code="50018">No DocBlock was found for property $cipherMode</error>
     </parse_markers>
   </file>
   <package name="Default" full_name="Default"/>

@@ -77,18 +77,18 @@
 <path fill="none" stroke="black" d="M208.932,-160.113C202.483,-162.907 196.021,-165.9 190,-169 156.306,-186.346 120.063,-210.009 94.9534,-227.279"/>
 <polygon fill="none" stroke="black" points="92.7818,-224.526 86.5587,-233.1 96.7707,-230.278 92.7818,-224.526"/>
 </g>
-<!-- \\HTML -->
-<g id="node8" class="node"><title>\\HTML</title>
-<a xlink:href="classes.class.html.html" xlink:title="HTML" target="_parent">
-<polygon fill="none" stroke="black" points="284,-106 230,-106 230,-70 284,-70 284,-106"/>
-<text text-anchor="middle" x="257" y="-85.1" font-family="Courier,monospace" font-size="11.00">HTML</text>
+<!-- \\Crypto -->
+<g id="node8" class="node"><title>\\Crypto</title>
+<a xlink:href="classes.class.crypto.html" xlink:title="Crypto" target="_parent">
+<polygon fill="none" stroke="black" points="285,-106 229,-106 229,-70 285,-70 285,-106"/>
+<text text-anchor="middle" x="257" y="-85.1" font-family="Courier,monospace" font-size="11.00">Crypto</text>
 </a>
 </g>
-<!-- \\Crypto -->
-<g id="node9" class="node"><title>\\Crypto</title>
-<a xlink:href="functions.crypto.html" xlink:title="Crypto" target="_parent">
-<polygon fill="none" stroke="black" points="285,-52 229,-52 229,-16 285,-16 285,-52"/>
-<text text-anchor="middle" x="257" y="-31.1" font-family="Courier,monospace" font-size="11.00">Crypto</text>
+<!-- \\HTML -->
+<g id="node9" class="node"><title>\\HTML</title>
+<a xlink:href="classes.class.html.html" xlink:title="HTML" target="_parent">
+<polygon fill="none" stroke="black" points="284,-52 230,-52 230,-16 284,-16 284,-52"/>
+<text text-anchor="middle" x="257" y="-31.1" font-family="Courier,monospace" font-size="11.00">HTML</text>
 </a>
 </g>
 </g>
