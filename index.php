@@ -49,15 +49,13 @@ if(isset($_SESSION['SESSION_VALID'])) {
 include_once("config.php");
 include_once("version.php");
 include_once("classes/class.html.php");
-include_once("functions.cookies.php");
-include_once("functions.pheal.php");
+include_once("classes/class.cookies.php");
+include_once("classes/class.phealgood.php");
 
 # Initialze our objects
 $config		=	new Config;
 $version	=	new Version;
 $html		=	new HTML;
-
-
 
 # Use of phpBB as the user base has been scrapped. We will be using our own backend for user authentication.
 #	This allows us much more versatility. Coding in crons to register/deregister is the way to go (allows for flexabiltiy, too)
@@ -96,21 +94,15 @@ if(!isset($_SESSION['SESSION_VALID'])) {
 	$action	=	$_GET['action'];
 
 	if($action === "register") {
-
 		$html->dump_header();
 		# We need to display the registration form. This form will submit to /phealsgood.php
 		$html->dump_registration_form();
 		$html->dump_footer();
-
 	} else {
-		
 		$html->dump_header();
 		# When all else fails, display the login form
 		$html->dump_login_form();
 		$html->dump_footer();
-
 	}
-
-}
-	
+}	
 ?>

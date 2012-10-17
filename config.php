@@ -41,55 +41,68 @@ class Config {
 	
 	# IMPORTANT - Change these values to reflect the same pattern as the example provided. Once changed, NEVER ALTER THEM or EVERYTHING will break.
 	# Better yet, TODO: Make install script generate the key and iv, and make the admin update this file accordingly.
-	public $encryption_key				=	"&WPVsh<@nubWK!%U3S6eg7h5hE2hgV#Z";
-	public $encryption_iv				=	"i2xLQ,=X:Z~3P&8Bf8F&#kds8nla8390";
-	public $encryption_ciphername			=	MCRYPT_RIJNDAEL_256;
-	public $encrpytion_ciphermode			=	MCRYPT_MODE_CBC;
+	public $encryption_key;
+	public $encryption_iv;
+	public $encryption_ciphername;
+	public $encryption_ciphermode;
 	
-	public $validation_substr			=	"3R8!UM";
+	public $validation_substr;
 
 	# Teamspeak 3 Server Query Information (REQUIRED)
-	public $tshost = "localhost";	# TeamSpeak Address for Server Query
-	public $tsname = "serveradmin"; # ServerQuery UserName
-	public $tspass = "theSApassword";	# ServerQuery Password
-	public $tsport = "10011";	# TeamSpeak3 ServerQuery Port
-	public $tscport = "9987";	# TeamSpeak client port
+	public $teamspeak_host;
+	public $teamspeak_SAName;
+	public $teamspeak_SAPassword;
+	public $teamspeak_query_port;
+	public $teamspeak_client_port;
+	public $teamspeak_alliance_group;
+	public $teamspeak_whitelist_group;
+	public $teamspeak_ticker_format;
 	
-	# Teamspeak 3 group for alliance/corp members
-	public $group = 16;
-	
-	# Teamspeak 3 group for people on the whitelist
-	public $whitelist = 0;
-	
-	# TeamSpeak3 UserName format.
-	# 1 = [SHOP] Librarat
-	# 2 = SHOP | Librarat
-	public $ticker_format = 1;
+	public $secure_cookie;
 
 	# The path that PHEAL can use for caching
-	public $pheal_cache = "/toolbox/GIT/EveSpeak3/phealcache/";
+	public $pheal_cache 	= "/toolbox/GIT/EveSpeak3/phealcache/";
 
-
-	private $db_user	=	"devuser";
-	private $db_pass	=	"devpass";
+	private $db_host	=	"localhost";
+	private $db_user	=	"dev_user";
+	private $db_pass	=	"dev_pass";
 	private $db_name	=	"evespeak";
 
+	/**
+	* Constructor
+	*
+	* Magic method to populate our Config class with variables from our database.
+	*
+	*/
 	public function __construct() {
 
-		mysql_connect($this->db_user, $this->db_pass, $this->db_name) or die("Fatal error right off the bat. Pat fails.<br />".mysql_error());
+		mysql_connect($this->db_host, $this->db_user, $this->db_pass) or die("Fatal error right off the bat. Pat fails.<br />".mysql_error());
+		mysql_select_db($this->db_name);
 
-		$sql	=	"SELECT * FROM config";
+		$sql	=	"SELECT * FROM config LIMIT 1";
 		$result	=	mysql_query($sql) or die("Pat fails... error: ".mysql_error());
-		
-		if(!empty(mysql_fetch_array($result))) {
+		$array	=	mysql_fetch_array($result);
 
-			public $
-			
+		mysql_close();	
 
-		}
+		if(!empty($array)) {
 
-			
-
+			# Begin to set our session variables
+			$this->encryption_key			=	$array['crypto_general_key'];
+			$this->encryption_iv			=	$array['crypto_general_iv'];
+			$this->encryption_ciphername		=	$array['crypto_ciphername'];
+			$this->encryption_ciphermode		=	$array['crypto_ciphermode'];
+			$this->validation_substr		=	$array['validation_substr'];
+			$this->teamspeak_host			=	$array['teamspeak_host'];
+			$this->teamspeak_SAName			=	$array['teamspeak_SAName'];
+			$this->teamspeak_SAPassword		=	$array['teamspeak_SAPassword'];
+			$this->teamspeak_query_port		=	$array['teamspeak_query_port'];
+			$this->teamspeak_client_port		=	$array['teamspeak_client_port'];
+			$this->teamspeak_alliance_group		=	$array['teamspeak_alliance_group'];
+			$this->teamspeak_whitelist_group	=	$array['teamspeak_whitelist_group'];
+			$this->teamspeak_ticker_format		=	$array['teamspeak_ticker_format'];
+			$this->secure_cookie			=	$array['secure_cookie'];
+		} else { die("There was an error in ".__FILE__." instantiating the Config class."); }
 	}
 
 

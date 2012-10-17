@@ -41,6 +41,14 @@
 
 session_start();
 
+/**
+* Funtion to set a cookie(s) for remembering the user
+*
+* @param string $username The ENCRYPTED and BASE64 encoded username
+* @param string $usertoken The ENCRYPTED and BASE64 encoded session token
+* @param bool $secure_cookie TRUE or FALSE derrived from the config table in our DB to set the cookie for SSL transmission only DEFAULT FALSE
+* @param int $cookie_expirey The number of the days the cookie is valid for, DEFAULT 30
+*/
 function set_remember_me($username, $usertoken, $secure_cookie = FALSE, $cookie_expiry = 30) {
 # This function sets a cookie for "remember me" (automatic login). Passed variables  MUST already be encrypted!
 	

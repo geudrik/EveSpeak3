@@ -5,13 +5,131 @@
       <error line="0" code="50007">No page-level DocBlock was found in file html/index.php</error>
     </parse_markers>
   </file>
-  <file path="config.php" hash="4bce5845bb8a8024ba73e1d390084530" package="Default"/>
+  <file path="config.php" hash="39b0b9290801fee2e4d7679551a3b937" package="Default">
+    <class final="false" abstract="false" namespace="global" line="40" package="Default">
+      <extends/>
+      <name>Config</name>
+      <full_name>\Config</full_name>
+      <property final="false" static="false" visibility="public" line="44" namespace="global" package="Default">
+        <name>$encryption_key</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="45" namespace="global" package="Default">
+        <name>$encryption_iv</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="46" namespace="global" package="Default">
+        <name>$encryption_ciphername</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="47" namespace="global" package="Default">
+        <name>$encrpytion_ciphermode</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="49" namespace="global" package="Default">
+        <name>$validation_substr</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="52" namespace="global" package="Default">
+        <name>$teamspeak_host</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="53" namespace="global" package="Default">
+        <name>$teamspeak_SAName</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="54" namespace="global" package="Default">
+        <name>$teamspeak_SAPassword</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="55" namespace="global" package="Default">
+        <name>$teamspeak_query_port</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="56" namespace="global" package="Default">
+        <name>$teamspeak_client_port</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="57" namespace="global" package="Default">
+        <name>$teamspeak_alliance_group</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="58" namespace="global" package="Default">
+        <name>$teamspeak_whitelist_group</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="59" namespace="global" package="Default">
+        <name>$teamspeak_ticker_formet</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="61" namespace="global" package="Default">
+        <name>$secure_cookie</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="64" namespace="global" package="Default">
+        <name>$pheal_cache</name>
+        <default><![CDATA["/toolbox/GIT/EveSpeak3/phealcache/"]]></default>
+      </property>
+      <property final="false" static="false" visibility="private" line="67" namespace="global" package="Default">
+        <name>$db_user</name>
+        <default><![CDATA["devuser"]]></default>
+      </property>
+      <property final="false" static="false" visibility="private" line="68" namespace="global" package="Default">
+        <name>$db_pass</name>
+        <default><![CDATA["devpass"]]></default>
+      </property>
+      <property final="false" static="false" visibility="private" line="69" namespace="global" package="Default">
+        <name>$db_name</name>
+        <default><![CDATA["evespeak"]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="111" namespace="global" package="Default">
+        <name>$corp_group_ids</name>
+        <default><![CDATA[array(164893220 => 8, 98052336 => 9, 536016894 => 10, 583396001 => 11, 890720884 => 12, 1313553624 => 13, 1405531951 => 14, 1452329886 => 15, 98097265 => 16, 98127028 => 17, 98133741 => 18)]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="134" namespace="global" package="Default">
+        <name>$verbose</name>
+        <default><![CDATA[false]]></default>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="77" package="Default">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="71">
+          <description><![CDATA[Constructor]]></description>
+          <long-description><![CDATA[<p>Magic method to populate our Config class with variables from our database.</p>]]></long-description>
+        </docblock>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file config.php</error>
+      <error line="40" code="50000">No DocBlock was found for \Config</error>
+      <error line="44" code="50018">No DocBlock was found for property $encryption_key</error>
+      <error line="45" code="50018">No DocBlock was found for property $encryption_iv</error>
+      <error line="46" code="50018">No DocBlock was found for property $encryption_ciphername</error>
+      <error line="47" code="50018">No DocBlock was found for property $encrpytion_ciphermode</error>
+      <error line="49" code="50018">No DocBlock was found for property $validation_substr</error>
+      <error line="52" code="50018">No DocBlock was found for property $teamspeak_host</error>
+      <error line="53" code="50018">No DocBlock was found for property $teamspeak_SAName</error>
+      <error line="54" code="50018">No DocBlock was found for property $teamspeak_SAPassword</error>
+      <error line="55" code="50018">No DocBlock was found for property $teamspeak_query_port</error>
+      <error line="56" code="50018">No DocBlock was found for property $teamspeak_client_port</error>
+      <error line="57" code="50018">No DocBlock was found for property $teamspeak_alliance_group</error>
+      <error line="58" code="50018">No DocBlock was found for property $teamspeak_whitelist_group</error>
+      <error line="59" code="50018">No DocBlock was found for property $teamspeak_ticker_formet</error>
+      <error line="61" code="50018">No DocBlock was found for property $secure_cookie</error>
+      <error line="64" code="50018">No DocBlock was found for property $pheal_cache</error>
+      <error line="67" code="50018">No DocBlock was found for property $db_user</error>
+      <error line="68" code="50018">No DocBlock was found for property $db_pass</error>
+      <error line="69" code="50018">No DocBlock was found for property $db_name</error>
+      <error line="111" code="50018">No DocBlock was found for property $corp_group_ids</error>
+      <error line="134" code="50018">No DocBlock was found for property $verbose</error>
+    </parse_markers>
+  </file>
   <file path="_template.php" hash="eb04a156c335df6a666d710c04dc8228" package="Default">
     <parse_markers>
       <error line="0" code="50007">No page-level DocBlock was found in file _template.php</error>
     </parse_markers>
   </file>
-  <file path="index.php" hash="44b9cc5c2378d7a81a63e84e29e51a4a" package="Default">
+  <file path="index.php" hash="4a969c45fab749520adb768c9ebba286" package="Default">
     <include line="49" type="Include Once" package="Default">
       <name>config.php</name>
     </include>
@@ -22,10 +140,10 @@
       <name>classes/class.html.php</name>
     </include>
     <include line="52" type="Include Once" package="Default">
-      <name>functions.cookies.php</name>
+      <name>classes/class.cookies.php</name>
     </include>
     <include line="53" type="Include Once" package="Default">
-      <name>functions.pheal.php</name>
+      <name>classes/class.phealgood.php</name>
     </include>
     <parse_markers>
       <error line="0" code="50007">No page-level DocBlock was found in file index.php</error>
@@ -287,6 +405,91 @@ Note: This function will ALWAYS return something, even if it's not what you want
       <error line="47" code="50018">No DocBlock was found for property $cipherMode</error>
     </parse_markers>
   </file>
+  <file path="classes/class.phealgood.php" hash="86acd1c950b5bfe498e717a47f3c9548" package="Default">
+    <class final="false" abstract="false" namespace="global" line="40" package="Default">
+      <extends/>
+      <name>PhealGood</name>
+      <full_name>\PhealGood</full_name>
+      <property final="false" static="true" visibility="private" line="49" namespace="global" package="Default">
+        <name>$pheal</name>
+        <default><![CDATA[]]></default>
+        <docblock line="43">
+          <description><![CDATA[]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="43" name="param" description="A persistent, empty pheal instance, as this class requires the pheal instance to be set and unset several times" type="object" variable="$pheal_holder">
+            <type by_reference="false">object</type>
+          </tag>
+          <tag line="43" name="param" description="The ID of a players API key" type="int" variable="$id">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="43" name="param" description="The KEY that matches a players API ID" type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="43" name="param" description="An empty, but initialized pheal object" type="\obj" variable="$pheal">
+            <type by_reference="false">\obj</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="true" visibility="private" line="49" namespace="global" package="Default">
+        <name>$pheal_holder</name>
+        <default><![CDATA[]]></default>
+        <docblock line="43">
+          <description><![CDATA[]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="43" name="param" description="A persistent, empty pheal instance, as this class requires the pheal instance to be set and unset several times" type="object" variable="$pheal_holder">
+            <type by_reference="false">object</type>
+          </tag>
+          <tag line="43" name="param" description="The ID of a players API key" type="int" variable="$id">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="43" name="param" description="The KEY that matches a players API ID" type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="43" name="param" description="An empty, but initialized pheal object" type="\obj" variable="$pheal">
+            <type by_reference="false">\obj</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="56" package="Default">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="52">
+          <description><![CDATA[Our magic method to ensure a valid pheal object is being passed]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="52" name="param" description="The Pheal object being passed" type="object" variable="$pheal">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+        <argument line="56">
+          <name>$pheal</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="70" package="Default">
+        <name>Validate_KeyPair</name>
+        <full_name>Validate_KeyPair</full_name>
+        <docblock line="65">
+          <description><![CDATA[Validate the submitted API information]]></description>
+          <long-description><![CDATA[<p>This function takes no direct parameters. It relies on the magic method having checked for a valid pheal object being passed in</p>]]></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="116" package="Default">
+        <name>Get_Character_Info</name>
+        <full_name>Get_Character_Info</full_name>
+        <docblock line="111">
+          <description><![CDATA[Actually grab the players information from the EvE API servers]]></description>
+          <long-description><![CDATA[<p>This function takes no parameters. It's used in beginning to populate an array of character(s) information, returned upon successful completion of the public call</p>]]></long-description>
+        </docblock>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file classes/class.phealgood.php</error>
+      <error line="40" code="50000">No DocBlock was found for \PhealGood</error>
+      <critical line="43" code="50019">No short description for property $pheal</critical>
+      <critical line="43" code="50019">No short description for property $pheal_holder</critical>
+    </parse_markers>
+  </file>
   <file path="classes/index.php" hash="d41d8cd98f00b204e9800998ecf8427e" package="Default">
     <parse_markers>
       <error line="0" code="50007">No page-level DocBlock was found in file classes/index.php</error>
@@ -370,35 +573,51 @@ Note: This function will ALWAYS return something, even if it's not what you want
       <error line="94" code="50010">No DocBlock was found for method raw_error()</error>
     </parse_markers>
   </file>
-  <file path="classes/class.cookies.php" hash="2b89e30bc681ffd26c987c28627cc53b" package="Default">
-    <function namespace="global" line="44" package="Default">
+  <file path="classes/class.cookies.php" hash="88d9563f64124775bf98a50df0c3dc2f" package="Default">
+    <function namespace="global" line="52" package="Default">
       <name>set_remember_me</name>
       <full_name>\set_remember_me</full_name>
-      <argument line="44">
+      <docblock line="44">
+        <description><![CDATA[Funtion to set a cookie(s) for remembering the user]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="44" name="param" description="The ENCRYPTED and BASE64 encoded username" type="string" variable="$username">
+          <type by_reference="false">string</type>
+        </tag>
+        <tag line="44" name="param" description="The ENCRYPTED and BASE64 encoded session token" type="string" variable="$usertoken">
+          <type by_reference="false">string</type>
+        </tag>
+        <tag line="44" name="param" description="TRUE or FALSE derrived from the config table in our DB to set the cookie for SSL transmission only DEFAULT FALSE" type="bool" variable="$secure_cookie">
+          <type by_reference="false">bool</type>
+        </tag>
+        <tag line="44" name="param" description="The number of the days the cookie is valid for, DEFAULT 30" type="int" variable="$cookie_expirey">
+          <type by_reference="false">int</type>
+        </tag>
+      </docblock>
+      <argument line="52">
         <name>$username</name>
         <default><![CDATA[]]></default>
         <type/>
       </argument>
-      <argument line="44">
+      <argument line="52">
         <name>$usertoken</name>
         <default><![CDATA[]]></default>
         <type/>
       </argument>
-      <argument line="44">
+      <argument line="52">
         <name>$secure_cookie</name>
         <default><![CDATA[FALSE]]></default>
         <type/>
       </argument>
-      <argument line="44">
+      <argument line="52">
         <name>$cookie_expiry</name>
         <default><![CDATA[30]]></default>
         <type/>
       </argument>
     </function>
-    <function namespace="global" line="55" package="Default">
+    <function namespace="global" line="63" package="Default">
       <name>validate_remember_me</name>
       <full_name>\validate_remember_me</full_name>
-      <argument line="55">
+      <argument line="63">
         <name>$key</name>
         <default><![CDATA[]]></default>
         <type/>
@@ -406,8 +625,9 @@ Note: This function will ALWAYS return something, even if it's not what you want
     </function>
     <parse_markers>
       <error line="0" code="50007">No page-level DocBlock was found in file classes/class.cookies.php</error>
-      <error line="44" code="50009">No DocBlock was found for function \set_remember_me()</error>
-      <error line="55" code="50009">No DocBlock was found for function \validate_remember_me()</error>
+      <error line="44" code="50014">Name of argument $cookie_expiry does not match with the DocBlock's name $cookie_expirey in \set_remember_me()</error>
+      <notice line="44" code="50013">Parameter $cookie_expirey could not be found in \set_remember_me()</notice>
+      <error line="63" code="50009">No DocBlock was found for function \validate_remember_me()</error>
     </parse_markers>
   </file>
   <file path="init.php" hash="37834222e039d82af1c9d1d227e0b487" package="Default">

@@ -28,7 +28,7 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">43</span></a></li>
+                <span class="label label-info">70</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul></ul></a></li>
 <li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
@@ -57,12 +57,12 @@
 </li>
 <li class="nav-header">
 <i class="icon-custom icon-function"></i> Functions</li>
-<li class="function  "><a href="#set_remember_me" title="set_remember_me :: "><span class="description">set_remember_me()
-        </span><pre>set_remember_me</pre></a></li>
+<li class="function  "><a href="#set_remember_me" title="set_remember_me :: Funtion to set a cookie(s) for remembering the user"><span class="description">Funtion to set a cookie(s) for remembering the user</span><pre>set_remember_me</pre></a></li>
 <li class="function  "><a href="#validate_remember_me" title="validate_remember_me :: "><span class="description">validate_remember_me()
         </span><pre>validate_remember_me</pre></a></li>
 <li class="nav-header">
 <i class="icon-custom icon-class"></i> Classes</li>
+<li><a href="#Config" title="">Config</a></li>
 <li><a href="#Version" title="">Version</a></li>
 <li><a href="#MySQLException" title="">MySQLException</a></li>
 <li><a href="#Authentication" title="">Authentication</a></li>
@@ -70,6 +70,7 @@
 <li><a href="#Logging" title="">Logging</a></li>
 <li><a href="#HandleException" title="">HandleException</a></li>
 <li><a href="#Crypto" title="">Crypto</a></li>
+<li><a href="#PhealGood" title="">PhealGood</a></li>
 <li><a href="#HTML" title="">HTML</a></li>
 </ul>
 </div>
@@ -84,16 +85,21 @@
 <h3>
 <i class="icon-custom icon-function"></i> Functions</h3>
 <a name="set_remember_me" id="set_remember_me"></a><div class="element clickable function  set_remember_me" data-toggle="collapse" data-target=".set_remember_me .collapse">
-<h2>set_remember_me()
-        </h2>
-<pre>set_remember_me($username, $usertoken, $secure_cookie, $cookie_expiry) </pre>
+<h2>Funtion to set a cookie(s) for remembering the user</h2>
+<pre>set_remember_me(string $username, string $usertoken, bool $secure_cookie, $cookie_expiry) </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
-<div class="subelement argument"><h4>$username</h4></div>
-<div class="subelement argument"><h4>$usertoken</h4></div>
-<div class="subelement argument"><h4>$secure_cookie</h4></div>
+<div class="subelement argument">
+<h4>$username</h4>
+<code>string</code><p>The ENCRYPTED and BASE64 encoded username</p></div>
+<div class="subelement argument">
+<h4>$usertoken</h4>
+<code>string</code><p>The ENCRYPTED and BASE64 encoded session token</p></div>
+<div class="subelement argument">
+<h4>$secure_cookie</h4>
+<code>bool</code><p>TRUE or FALSE derrived from the config table in our DB to set the cookie for SSL transmission only DEFAULT FALSE</p></div>
 <div class="subelement argument"><h4>$cookie_expiry</h4></div>
 </div></div>
 </div>
@@ -116,6 +122,13 @@
 <p class="short_description"></p>
 <div class="details collapse"></div>
 <a href="../classes/Authentication.html" class="more">« More »</a>
+</div>
+<a name="Config" id="Config"></a><div class="element ajax clickable class" href="../classes/Config.html">
+<h1>Config<a href="../classes/Config.html">¶</a>
+</h1>
+<p class="short_description"></p>
+<div class="details collapse"></div>
+<a href="../classes/Config.html" class="more">« More »</a>
 </div>
 <a name="Crypto" id="Crypto"></a><div class="element ajax clickable class" href="../classes/Crypto.html">
 <h1>Crypto<a href="../classes/Crypto.html">¶</a>
@@ -159,6 +172,13 @@
 <div class="details collapse"></div>
 <a href="../classes/MySQLException.html" class="more">« More »</a>
 </div>
+<a name="PhealGood" id="PhealGood"></a><div class="element ajax clickable class" href="../classes/PhealGood.html">
+<h1>PhealGood<a href="../classes/PhealGood.html">¶</a>
+</h1>
+<p class="short_description"></p>
+<div class="details collapse"></div>
+<a href="../classes/PhealGood.html" class="more">« More »</a>
+</div>
 <a name="Version" id="Version"></a><div class="element ajax clickable class" href="../classes/Version.html">
 <h1>Version<a href="../classes/Version.html">¶</a>
 </h1>
@@ -172,7 +192,7 @@
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a10</a> and<br>
-            generated on 2012-10-17T13:01:08-04:00.<br></footer></div>
+            generated on 2012-10-17T15:30:15-04:00.<br></footer></div>
 </div>
 </body>
 </html>

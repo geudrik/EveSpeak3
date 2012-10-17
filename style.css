@@ -130,9 +130,9 @@ h3 {
 } 
 
 input {
-    border: thin #009ac1; 
-    background: #000;
-    margin: 0;
+	border: 1px solid #009ac1;
+	background: transparent;
+	margin: 0;
 	color: #009ac1;
 }
 
