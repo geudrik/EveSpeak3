@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <eveapi version="2">
-  <currentTime>2012-10-17 20:21:55</currentTime>
+  <currentTime>2012-10-18 03:22:51</currentTime>
   <result>
     <characterID>197744682</characterID>
     <characterName>8Valve Growl</characterName>
@@ -20,5 +20,5 @@
       <row recordID="13586426" corporationID="1000167" startDate="2010-04-26 14:52:00" />
     </rowset>
   </result>
-  <cachedUntil>2012-10-17 21:18:55</cachedUntil>
+  <cachedUntil>2012-10-18 04:19:52</cachedUntil>
 </eveapi>

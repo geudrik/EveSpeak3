@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <eveapi version="2">
-  <currentTime>2012-10-17 20:21:56</currentTime>
+  <currentTime>2012-10-18 03:22:52</currentTime>
   <result>
     <characterID>1963387687</characterID>
     <characterName>librarat</characterName>
@@ -74,5 +74,5 @@
       <row recordID="10285120" corporationID="1000045" startDate="2004-11-24 19:54:00" />
     </rowset>
   </result>
-  <cachedUntil>2012-10-17 21:12:59</cachedUntil>
+  <cachedUntil>2012-10-18 04:13:05</cachedUntil>
 </eveapi>
