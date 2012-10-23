@@ -45,9 +45,11 @@ include_once("classes/class.phealgood.php");
 include_once("classes/class.cookies.php");
 include_once("classes/class.crypto.php");
 include_once("classes/class.html.php");
+include_once("classes/class.Exceptions.php");
 
-$config		=	new Config;
-$html		=	new HTML;
+$config			=	new Config;
+$html			=	new HTML;
+$phealGoodExcept	=	new phealGoodExcept;
 
 print_r($_SESSION);
 
@@ -63,10 +65,14 @@ if(!isset($_SESSION['REGISTRATION_STEP']) && isset($_POST['register_submit'])) {
 	PhealConfig::getInstance()->cache 		= 	new PhealFileCache($config->pheal_cache);
 	$pheal						=	new Pheal($id, $key);
 
+
 	# Now, the real fun begins. Call our PhealGood class...
-	$phealgood					=	new PhealGood($pheal);
-	
-	if(($result = $phealgood->Get_Character_Info() == TRUE)) {
+	$phealgood					=	new PhealGood($pheal, $phealGoodExcept);
+	$result 					=	$phealgood->Get_Character_Info();
+	unset($pheal, $phealgood);
+
+	# We're confident that our phealgood class executed successfully. Now just (for now) dump the session info as a clickable link
+	if($result == TRUE) {
 
 		$_SESSION['REGISTRATION_STEP']		=	(int) 2;
 
@@ -75,8 +81,11 @@ if(!isset($_SESSION['REGISTRATION_STEP']) && isset($_POST['register_submit'])) {
 			echo("<a href=\"?char=".$value['id']."\">".$key."</a><br />");
 		}
 
+	} else if(is_string($result)) {
+		# If $result is a string, phealgood exploded. Now we're just going to dump the error, telling the user to let an admin know (see id ticket)
+		die("TODO: Code the rest of this exception handling ".__FILE__."::".__LINE__);
 	} else {
-		die("PhealGood ate shit. oops.");
+		die("Phealgood ate shit for some reason. A thrown exception wasn't caught for some reason");
 	}
 
 } else if($_SESSION['REGISTRATION_STEP'] == '2') {

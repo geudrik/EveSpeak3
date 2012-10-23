@@ -66,6 +66,8 @@ class PhealGood {
 	* Validate the submitted API information
 	*
 	* This function takes no direct parameters. It relies on the magic method having checked for a valid pheal object being passed in
+	*
+	* @return multi  EXCEPTION on failure, TRUE on success
 	*/	
 	private function Validate_KeyPair() {
 	# Return TRUE if validation SUCCEEDS, a STRING (error text) upon FAILURE.
@@ -81,22 +83,25 @@ class PhealGood {
 			$apiAccountExpires			=	$apiScope->key->expires;
 
 		} catch (PhealAPIException $e) {
-			return ("Error: ".$e->getCode()." || ".$e->getMessage()." || You probably failed to provide a matching id/key pair. [".__FILE__.":".__LINE__."]");
-
+			# return ("Error: ".$e->getCode()." || ".$e->getMessage()." || You probably failed to provide a matching id/key pair. [".__FILE__.":".__LINE__."]");
+			return $e;
 		} catch (PhealException $e) {
-			return ("Error: Couldn't get your API details from the CCP Server. Error: ".$e->getMessage()." [".__FILE__.":".__LINE__."]");
+			# return ("Error: Couldn't get your API details from the CCP Server. Error: ".$e->getMessage()." [".__FILE__.":".__LINE__."]");
+			return $e;
 		}
 
 
 
 		# Ensure that their API Info is of the "Account" type, and not just for a specific character.
 		if($apiAccountType !== "Account") {
-			return ("Error: Your key isn't an Account key. Please remedy this issue and come back here");
+			# return ("Error: Your key isn't an Account key. Please remedy this issue and come back here");
+			return FALSE;
 		}
 
 		# If their key has an expiration date...
 		if($apiAccountExpires !== "") {
 			return ("Error: Your API information expires. Please ensure that it's set to never expire and try again");
+			return FALSE;
 		}
 
 		# Memory managemnt
@@ -111,23 +116,25 @@ class PhealGood {
 	/**
 	* Actually grab the players information from the EvE API servers
 	*
-	* This function takes no parameters. It's used in beginning to populate an array of character(s) information, returned upon successful completion of the public call
+	* This function takes no parameters. It's used in beginning to populate an array of character(s) information stored as session data. Exception handling needs to be worked on.
+	*
+	* @return multi TRUE on success (session data has been populated), Exception upon failure.
 	*/	
 	public function Get_Character_Info() {
 
 		# First, lets ensure that validation of our pheal object succeeds...
-		if($this->Validate_KeyPair() == TRUE) {
+		if($this->Validate_KeyPair()) {
 
 			# Create array of character names.
 			try {
 				$this->pheal		=	$this->pheal_holder;
 				$result			=	$this->pheal->Characters();
 			} catch (PhealAPIException $e) {
-				return ("Error: PHEAL Puked. There was an API Issue with the Key/ID Pair. ".$e->getMessage().__FILE__.":".__LINE__."]");
-
+				# return ("Error: PHEAL Puked. There was an API Issue with the Key/ID Pair. ".$e->getMessage().__FILE__.":".__LINE__."]");
+				return $e;
 			} catch (PhealException $e) {
-
-				return ("Couldn't get API Details from server. Error: ".$e->getMessage()."[".__FILE__.":".__LINE__."]");
+				# return ("Couldn't get API Details from server. Error: ".$e->getMessage()."[".__FILE__.":".__LINE__."]");
+				return $e;
 			}
 
 			# Define a session var that holds a small array (no larger than 3 pairs) of character names...
@@ -158,11 +165,11 @@ class PhealGood {
 				}
 
 			} catch(PhealHTTPException $e) {
-				echo("Pheal Puked. Error: ".$e->getMessage()."[".__FILE__.":".__LINE__."]");
-				exit();
+				# echo("Pheal Puked. Error: ".$e->getMessage()."[".__FILE__.":".__LINE__."]");
+				return $e;
 			} catch(PhealException $e) {
-				echo("Pheal Puked. Error: ".$e->getMessage()."[".__FILE__.":".__LINE__."]");
-				exit();
+				# echo("Pheal Puked. Error: ".$e->getMessage()."[".__FILE__.":".__LINE__."]");
+				return $e;
 			}
 			
 			# Now that we've got a useable array of character names, let's go ahead and populate it with Corp and Alliance ID's
@@ -183,15 +190,15 @@ class PhealGood {
 				}
 
 			} catch(PhealHTTPException $e) {
-				return("Pheal Puked. Error: ".$e->getMessage()."[".__FILE__.":".__LINE__."]");
-
+				# return("Pheal Puked. Error: ".$e->getMessage()."[".__FILE__.":".__LINE__."]");
+				return $e;
 			} catch(PhealException $e) {
-				return("Pheal Puked. Error: ".$e->getMessage()."[".__FILE__.":".__LINE__."]");
-
+				# return("Pheal Puked. Error: ".$e->getMessage()."[".__FILE__.":".__LINE__."]");
+				return $e;
 			}
 			
 			# Memory management and conclusion...
-			unset($pheal);
+			unset($this->pheal, $this->pheal_holder);
 			return TRUE;
 		} else {
 			return FALSE;

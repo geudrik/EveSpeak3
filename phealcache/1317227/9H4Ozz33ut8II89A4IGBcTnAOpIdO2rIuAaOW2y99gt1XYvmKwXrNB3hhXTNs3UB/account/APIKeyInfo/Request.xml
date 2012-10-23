@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <eveapi version="2">
-  <currentTime>2012-10-18 03:22:50</currentTime>
+  <currentTime>2012-10-21 21:08:11</currentTime>
   <result>
     <key accessMask="268435455" type="Account" expires="">
       <rowset name="characters" key="characterID" columns="characterID,characterName,corporationID,corporationName">
@@ -9,5 +9,5 @@
       </rowset>
     </key>
   </result>
-  <cachedUntil>2012-10-18 03:27:50</cachedUntil>
+  <cachedUntil>2012-10-21 21:13:11</cachedUntil>
 </eveapi>
