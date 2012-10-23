@@ -37,49 +37,41 @@
 #####   
 ############################################################################################################
 
+
+/**
+* eveSpeak Custom Exception Handling
+*
+* This class is an attempt at condensing all of our exceptions being thrown into an easy to manage interface. 
+* When an exception is thrown, the idea here is that you'll pass it an exception type (see params) and something different
+* will be done wtih that exception.
+*
+* @param $message string This is the supplimentary error string passed to our exception
+* @param $code int This is an integer value that indicates the type of exception we need to prepare to handle. 0 is default, a default exception. 1 for a MySQL exception, 2 for a pheal exception.
+*/
 class evespeakException extends Exception
 {
 
-	public function __construct($message, $type = 0, )
-	{
+	private $exceptionType	=	(int) 0;
 
+	public function __construct($message = "{! SET YOUR EXCEPTION STRING !}", $code = self::$exceptionType) {
+		
+		# Tell our parent to throw an exception, which we'll deal with later.
+		parent::__construct($message, $code);
+
+		# Set our private variable $exceptionType (we'll be doing different things with different types of exceptions)
+		switch ($code) {
+
+			case "1":
+
+			break;
+
+			case "2":
+
+			break;
+
+			default:
+
+			break;	
+		}
 	}
-
-
-
 }
-
-40 class MySQLException extends Exception
- 41 {
- 42 
- 43         private $exceptionType;
- 44 
- 45         public function __construct($message,$code=0){
- 46 
- 47                 // call parent of Exception class
- 48                 parent::__construct($message,$code);
- 49 
- 50                 if($code==1){
- 51 
- 52                         $this->exceptionType='MySQLException';
- 53 
- 54                 }
- 55 
- 56                 elseif($code==2){
- 57 
- 58                         $this->exceptionType='ResultException';
- 59 
- 60                 }
- 61 
- 62                 else{
- 63 
- 64                         $this->exceptionType='Unknown Exception';
- 65 
- 66                 }
- 67         }
- 68 
- 69         public function showMySQLExceptionInfo(){
- 70                 return 'Catching '.$this->exceptionType.'...<br />Exception message: '.$this->getMessage().'<br />Source filename of exception: '.$this->getFile().'<br />Source line of exception: '.$this->getLine();
- 71         }
- 72 }
-

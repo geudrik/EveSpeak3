@@ -45,11 +45,11 @@ include_once("classes/class.phealgood.php");
 include_once("classes/class.cookies.php");
 include_once("classes/class.crypto.php");
 include_once("classes/class.html.php");
-include_once("classes/class.Exceptions.php");
+# include_once("classes/class.Exceptions.php");
 
 $config			=	new Config;
 $html			=	new HTML;
-$phealGoodExcept	=	new phealGoodExcept;
+# $phealGoodExcept	=	new phealGoodExcept;
 
 print_r($_SESSION);
 
@@ -67,7 +67,7 @@ if(!isset($_SESSION['REGISTRATION_STEP']) && isset($_POST['register_submit'])) {
 
 
 	# Now, the real fun begins. Call our PhealGood class...
-	$phealgood					=	new PhealGood($pheal, $phealGoodExcept);
+	$phealgood					=	new PhealGood($pheal);
 	$result 					=	$phealgood->Get_Character_Info();
 	unset($pheal, $phealgood);
 
