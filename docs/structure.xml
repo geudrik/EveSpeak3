@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project version="2.0.0a10" title="">
-  <file path="register.php" hash="699272067a92906a3f6aeacc8569a496" package="Default">
+  <file path="register.php" hash="ba01687f510cfbcdfd049d1854ca8943" package="Default">
     <include line="42" type="Include Once" package="Default">
       <name>config.php</name>
     </include>
@@ -515,7 +515,7 @@ Note: This function will ALWAYS return something, even if it's not what you want
       <error line="47" code="50018">No DocBlock was found for property $cipherMode</error>
     </parse_markers>
   </file>
-  <file path="classes/class.phealgood.php" hash="2b461f1eb35ef70f8ecb9870bff6b3b8" package="Default">
+  <file path="classes/class.phealgood.php" hash="718604e3b7109a408449fad9344983da" package="Default">
     <class final="false" abstract="false" namespace="global" line="40" package="Default">
       <extends/>
       <name>PhealGood</name>
@@ -576,20 +576,26 @@ Note: This function will ALWAYS return something, even if it's not what you want
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="70" package="Default">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="72" package="Default">
         <name>Validate_KeyPair</name>
         <full_name>Validate_KeyPair</full_name>
         <docblock line="65">
           <description><![CDATA[Validate the submitted API information]]></description>
           <long-description><![CDATA[<p>This function takes no direct parameters. It relies on the magic method having checked for a valid pheal object being passed in</p>]]></long-description>
+          <tag line="65" name="return" description="EXCEPTION on failure, TRUE on success" type="\multi">
+            <type by_reference="false">\multi</type>
+          </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="116" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="123" package="Default">
         <name>Get_Character_Info</name>
         <full_name>Get_Character_Info</full_name>
-        <docblock line="111">
+        <docblock line="116">
           <description><![CDATA[Actually grab the players information from the EvE API servers]]></description>
-          <long-description><![CDATA[<p>This function takes no parameters. It's used in beginning to populate an array of character(s) information, returned upon successful completion of the public call</p>]]></long-description>
+          <long-description><![CDATA[<p>This function takes no parameters. It's used in beginning to populate an array of character(s) information stored as session data. Exception handling needs to be worked on.</p>]]></long-description>
+          <tag line="116" name="return" description="TRUE on success (session data has been populated), Exception upon failure." type="\multi">
+            <type by_reference="false">\multi</type>
+          </tag>
         </docblock>
       </method>
     </class>
@@ -740,6 +746,7 @@ Note: This function will ALWAYS return something, even if it's not what you want
       <error line="63" code="50009">No DocBlock was found for function \validate_remember_me()</error>
     </parse_markers>
   </file>
+  <file path="classes/class.Exceptions.php" hash="581e30c1875f331a0d1dfcb2497bb244" package="Default"/>
   <file path="init.php" hash="37834222e039d82af1c9d1d227e0b487" package="Default">
     <include line="40" type="Include Once" package="Default">
       <name>config.php</name>
