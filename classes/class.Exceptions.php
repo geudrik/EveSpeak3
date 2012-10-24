@@ -53,25 +53,98 @@ class evespeakException extends Exception
 
 	private $exceptionType	=	(int) 0;
 
-	public function __construct($message = "{! SET YOUR EXCEPTION STRING !}", $code = self::$exceptionType) {
+	/**
+	* Magic Method
+	*
+	* Our magic method to actually make our exception 
+	*
+	* @param $message string The custom string to set as our error
+	* @param $code int An error code to associate with the exception being thrown
+	* @param $previous obj The instance of the origininating exception (eg: PHEAL pukes, we want to see it's stack)
+	*/
+	public function __construct($message = "{! SET YOUR EXCEPTION STRING !}", $code = self::$exceptionType, $previous = NULL) {
 		
 		# Tell our parent to throw an exception, which we'll deal with later.
-		parent::__construct($message, $code);
+		parent::__construct($message, $previous);
 
-		# Set our private variable $exceptionType (we'll be doing different things with different types of exceptions)
-		switch ($code) {
-
-			case "1":
-
-			break;
-
-			case "2":
-
-			break;
-
-			default:
-
-			break;	
-		}
 	}
+
+	/**
+	* Function __toString
+	*
+	* Convert our object to a string, we want to see everything that happened
+	*/
+	public function __toString() 
+	{
+
+		return __CLASS__ . ": [{$this->exceptionType}]: {$this->message}\n";
+	}
+
+	/** 
+	* Function logException
+	*
+	* We want to log all exceptions as well as display them, so we can go back through stacks and see what's breaking, where and why (hopefully)
+	* Note: We need to make sure that /var/log/evespeak/error.log is writable by our PHP installation.
+	*
+	* @param $type string The textual representation of what our exception is about. eg: Pheal, PhealAPI, PhealGood, MySQL etc
+	* @param return bool TRUE if the file was written into successfully, FALSE if the file could be written to, or opened for that matter.
+	*/
+	public function logException($type)
+	{
+		if($handle = fopen("/var/log/evespeak/error.log", rw)
+		{
+			$exception	=	"\n[".date("Y-m-d H:i:s")."] ".$type." Exception thrown -> ".$this->__toString();
+			if(fwrite($handle, $exception) { 
+				fclose($handle);
+				return TRUE; 
+			} else {
+				fclose($handle);
+				return FALSE;
+			};
+		} else {
+			return FALSE;
+		}	
+	}
+
+	/**
+	* Function mysqlException
+	*
+	* Our custom exception to do something with mysql issues
+	*/
+	public function mysqlException()
+	{
+
+	}
+
+	/**
+	* Function phealgoodException
+	*
+	* Our custom exception to do something when phealgood pukes.
+	*/
+	public function phealgoodException()
+	{
+
+	}
+
+	/** 
+	* Function phealException
+	* 
+	* Custom function do deal with PHEAL when it pukes
+	*/
+	public function phealException()
+	{
+
+	}
+
+	/**
+	* Function phealAPIException
+	*
+	* Custom function deal with phealAPI issues (eg: bad api info)
+	*/
+	public function phealAPIException()
+	{
+
+	}
+	
 }
+
