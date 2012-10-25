@@ -28,7 +28,7 @@
       <error line="0" code="50007">No page-level DocBlock was found in file html/index.php</error>
     </parse_markers>
   </file>
-  <file path="config.php" hash="0c42e4c75a172f37c748d24959a49f8b" package="Default">
+  <file path="config.php" hash="caff7e65f880c585dacff64398d537b2" package="Default">
     <class final="false" abstract="false" namespace="global" line="40" package="Default">
       <extends/>
       <name>Config</name>
@@ -273,42 +273,6 @@
       <error line="0" code="50007">No page-level DocBlock was found in file version.php</error>
       <error line="40" code="50000">No DocBlock was found for \Version</error>
       <error line="42" code="50018">No DocBlock was found for property $version</error>
-    </parse_markers>
-  </file>
-  <file path="classes/class.exceptionMySQL.php" hash="e289cb3f9a0e8e9f726efe202d22e077" package="Default">
-    <class final="false" abstract="false" namespace="global" line="40" package="Default">
-      <extends>\Exception</extends>
-      <name>MySQLException</name>
-      <full_name>\MySQLException</full_name>
-      <property final="false" static="false" visibility="private" line="43" namespace="global" package="Default">
-        <name>$exceptionType</name>
-        <default><![CDATA[]]></default>
-      </property>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="45" package="Default">
-        <name>__construct</name>
-        <full_name>__construct</full_name>
-        <argument line="45">
-          <name>$message</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-        <argument line="45">
-          <name>$code</name>
-          <default><![CDATA[0]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="69" package="Default">
-        <name>showMySQLExceptionInfo</name>
-        <full_name>showMySQLExceptionInfo</full_name>
-      </method>
-    </class>
-    <parse_markers>
-      <error line="0" code="50007">No page-level DocBlock was found in file classes/class.exceptionMySQL.php</error>
-      <error line="40" code="50000">No DocBlock was found for \MySQLException</error>
-      <error line="43" code="50018">No DocBlock was found for property $exceptionType</error>
-      <error line="45" code="50010">No DocBlock was found for method __construct()</error>
-      <error line="69" code="50010">No DocBlock was found for method showMySQLExceptionInfo()</error>
     </parse_markers>
   </file>
   <file path="classes/class.authentication.php" hash="32a416c2c69ea284d0f9b43ed6be1e49" package="Default">
@@ -746,7 +710,133 @@ Note: This function will ALWAYS return something, even if it's not what you want
       <error line="63" code="50009">No DocBlock was found for function \validate_remember_me()</error>
     </parse_markers>
   </file>
-  <file path="classes/class.Exceptions.php" hash="581e30c1875f331a0d1dfcb2497bb244" package="Default"/>
+  <file path="classes/class.Exceptions.php" hash="0d4efe87846da0c7a39baa215e0ef27c" package="Default">
+    <class final="false" abstract="false" namespace="global" line="52" package="Default">
+      <extends>\Exception</extends>
+      <name>EvespeakException</name>
+      <full_name>\EvespeakException</full_name>
+      <docblock line="41">
+        <description><![CDATA[eveSpeak Custom Exception Handling]]></description>
+        <long-description><![CDATA[<p>This class is an attempt at condensing all of our exceptions being thrown into an easy to manage interface.
+When an exception is thrown, the idea here is that you'll pass it an exception type (see params) and something different
+will be done wtih that exception.</p>]]></long-description>
+        <tag line="41" name="param" description="string This is the supplimentary error string passed to our exception" type="\$message" variable="">
+          <type by_reference="false">\$message</type>
+        </tag>
+        <tag line="41" name="param" description="int This is an integer value that indicates the type of exception we need to prepare to handle. 0 is default, a default exception. 1 for a MySQL exception, 2 for a pheal exception." type="\$code" variable="">
+          <type by_reference="false">\$code</type>
+        </tag>
+        <tag line="41" name="param" description="obj This is an optional (suggested) pre-existing exception to be passed (and parsed and logged) so we can backtrace through the stack" type="\$previous" variable="">
+          <type by_reference="false">\$previous</type>
+        </tag>
+      </docblock>
+      <property final="false" static="false" visibility="private" line="55" namespace="global" package="Default">
+        <name>$message</name>
+        <default><![CDATA['YOU FORGOT TO SET AN EXCEPTION MESSAGE']]></default>
+      </property>
+      <property final="false" static="false" visibility="private" line="56" namespace="global" package="Default">
+        <name>$code</name>
+        <default><![CDATA[0]]></default>
+      </property>
+      <property final="false" static="false" visibility="private" line="57" namespace="global" package="Default">
+        <name>$previous</name>
+        <default><![CDATA[NULL]]></default>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="64" package="Default">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="59">
+          <description><![CDATA[Magic Method]]></description>
+          <long-description><![CDATA[<p>Our magic method to actually make our exception</p>]]></long-description>
+        </docblock>
+        <argument line="64">
+          <name>$message</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="64">
+          <name>$code</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="64">
+          <name>$previous</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="81" package="Default">
+        <name>__toString</name>
+        <full_name>__toString</full_name>
+        <docblock line="76">
+          <description><![CDATA[Function __toString]]></description>
+          <long-description><![CDATA[<p>Convert our object to a string, we want to see everything that happened</p>]]></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="96" package="Default">
+        <name>logException</name>
+        <full_name>logException</full_name>
+        <docblock line="87">
+          <description><![CDATA[Function logException]]></description>
+          <long-description><![CDATA[<p>We want to log all exceptions as well as display them, so we can go back through stacks and see what's breaking, where and why (hopefully)
+Note: We need to make sure that /var/log/evespeak/error.log is writable by our PHP installation.</p>]]></long-description>
+          <tag line="87" name="param" description="string The textual representation of what our exception is about. eg: Pheal, PhealAPI, PhealGood, MySQL etc" type="\$type" variable="$type">
+            <type by_reference="false">\$type</type>
+          </tag>
+          <tag line="87" name="param" description="bool TRUE if the file was written into successfully, FALSE if the file could be written to, or opened for that matter." type="\return" variable="">
+            <type by_reference="false">\return</type>
+          </tag>
+        </docblock>
+        <argument line="96">
+          <name>$type</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="118" package="Default">
+        <name>mysqlException</name>
+        <full_name>mysqlException</full_name>
+        <docblock line="113">
+          <description><![CDATA[Function mysqlException]]></description>
+          <long-description><![CDATA[<p>Our custom exception to do something with mysql issues</p>]]></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="128" package="Default">
+        <name>phealgoodException</name>
+        <full_name>phealgoodException</full_name>
+        <docblock line="123">
+          <description><![CDATA[Function phealgoodException]]></description>
+          <long-description><![CDATA[<p>Our custom exception to do something when phealgood pukes.</p>]]></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="138" package="Default">
+        <name>phealException</name>
+        <full_name>phealException</full_name>
+        <docblock line="133">
+          <description><![CDATA[Function phealException]]></description>
+          <long-description><![CDATA[<p>Custom function do deal with PHEAL when it pukes</p>]]></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="148" package="Default">
+        <name>phealAPIException</name>
+        <full_name>phealAPIException</full_name>
+        <docblock line="143">
+          <description><![CDATA[Function phealAPIException]]></description>
+          <long-description><![CDATA[<p>Custom function deal with phealAPI issues (eg: bad api info)</p>]]></long-description>
+        </docblock>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file classes/class.Exceptions.php</error>
+      <error line="55" code="50018">No DocBlock was found for property $message</error>
+      <error line="56" code="50018">No DocBlock was found for property $code</error>
+      <error line="57" code="50018">No DocBlock was found for property $previous</error>
+      <error line="59" code="50015">Argument $message is missing from the Docblock of __construct()</error>
+      <error line="59" code="50015">Argument $code is missing from the Docblock of __construct()</error>
+      <error line="59" code="50015">Argument $previous is missing from the Docblock of __construct()</error>
+      <notice line="87" code="50013">Parameter  could not be found in logException()</notice>
+    </parse_markers>
+  </file>
   <file path="init.php" hash="37834222e039d82af1c9d1d227e0b487" package="Default">
     <include line="40" type="Include Once" package="Default">
       <name>config.php</name>

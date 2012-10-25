@@ -111,14 +111,17 @@ class Config {
 	*/
 	public function __construct() {
 
-		mysql_connect($this->db_host, $this->db_user, $this->db_pass) or die("Fatal error right off the bat. Pat fails.<br />".mysql_error());
-		mysql_select_db($this->db_name);
+		$m = new mysqli($this->db_host, $this->db_user, $this->db_pass, $this->db_name))
+		if($m->connect_errno)
+		{
+			die("Pat fails right off the bat...".$m->connect_error
+		}
 
 		$sql	=	"SELECT * FROM config LIMIT 1";
-		$result	=	mysql_query($sql) or die("Pat fails... error: ".mysql_error());
-		$array	=	mysql_fetch_array($result);
+		$result	=	$m->query($sql);
+		$array	=	$result->fetch_array(MYSQLI_ASSOC);
 
-		mysql_close();	
+		mysqli_close();	
 
 		if(!empty($array)) {
 
@@ -149,10 +152,10 @@ class Config {
 	*/
 	public function mysql($var) {
 		if($var = "connect") {
-			mysql_connect($this->db_host, $this->db_user, $this->db_pass) or die("Fatal error. Could not connect to the database<br />".mysql_error());
-			mysql_select_db($this->db_name) or die("Could not conect to the specified database.<br />".mysql_error());
+			mysqli_connect($this->db_host, $this->db_user, $this->db_pass) or die("Fatal error. Could not connect to the database<br />".mysqli_error());
+			mysqli_select_db($this->db_name) or die("Could not conect to the specified database.<br />".mysqli_error());
 		} else {
-			mysql_close();
+			mysqli_close();
 		}
 	}
 	

@@ -47,25 +47,29 @@
 *
 * @param $message string This is the supplimentary error string passed to our exception
 * @param $code int This is an integer value that indicates the type of exception we need to prepare to handle. 0 is default, a default exception. 1 for a MySQL exception, 2 for a pheal exception.
+* @param $previous obj This is an optional (suggested) pre-existing exception to be passed (and parsed and logged) so we can backtrace through the stack
 */
-class evespeakException extends Exception
+class EvespeakException extends Exception
 {
 
-	private $exceptionType	=	(int) 0;
+	private $message	= 'YOU FORGOT TO SET AN EXCEPTION MESSAGE';
+	private $code		= 0;
+	private $previous	= NULL;
 
 	/**
 	* Magic Method
 	*
 	* Our magic method to actually make our exception 
-	*
-	* @param $message string The custom string to set as our error
-	* @param $code int An error code to associate with the exception being thrown
-	* @param $previous obj The instance of the origininating exception (eg: PHEAL pukes, we want to see it's stack)
 	*/
-	public function __construct($message = "{! SET YOUR EXCEPTION STRING !}", $code = self::$exceptionType, $previous = NULL) {
+	public function __construct($message, $code, $previous) 
+	{
+
+		$this->message	=	$message;
+		$this->code	=	$code;
+		$this->previous	=	$previous;
 		
 		# Tell our parent to throw an exception, which we'll deal with later.
-		parent::__construct($message, $previous);
+		parent::__construct($this->message, $this->previous);
 
 	}
 
@@ -91,10 +95,10 @@ class evespeakException extends Exception
 	*/
 	public function logException($type)
 	{
-		if($handle = fopen("/var/log/evespeak/error.log", rw)
+		if($handle = fopen("/var/log/evespeak/error.log", rw))
 		{
 			$exception	=	"\n[".date("Y-m-d H:i:s")."] ".$type." Exception thrown -> ".$this->__toString();
-			if(fwrite($handle, $exception) { 
+			if(fwrite($handle, $exception)) { 
 				fclose($handle);
 				return TRUE; 
 			} else {

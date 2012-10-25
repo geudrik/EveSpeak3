@@ -45,11 +45,10 @@ include_once("classes/class.phealgood.php");
 include_once("classes/class.cookies.php");
 include_once("classes/class.crypto.php");
 include_once("classes/class.html.php");
-# include_once("classes/class.Exceptions.php");
+include_once("classes/class.Exceptions.php");
 
 $config			=	new Config;
 $html			=	new HTML;
-# $phealGoodExcept	=	new phealGoodExcept;
 
 print_r($_SESSION);
 
@@ -75,12 +74,14 @@ if(!isset($_SESSION['REGISTRATION_STEP']) && isset($_POST['register_submit'])) {
 	if($result == TRUE) {
 
 		$_SESSION['REGISTRATION_STEP']		=	(int) 2;
-
+		
+		# Begin our HTML Dump
+		$html->dump_header();
 		foreach($_SESSION['CHARACTERS_ON_ACCOUNT'] as $key => $value) {
 			# Give registrant a list of characters, so they can select their main...
 			echo("<a href=\"?char=".$value['id']."\">".$key."</a><br />");
 		}
-
+		$html->dump_footer();
 	} else if(is_string($result)) {
 		# If $result is a string, phealgood exploded. Now we're just going to dump the error, telling the user to let an admin know (see id ticket)
 		die("TODO: Code the rest of this exception handling ".__FILE__."::".__LINE__);

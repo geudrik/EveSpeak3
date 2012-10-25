@@ -28,7 +28,7 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">68</span></a></li>
+                <span class="label label-info">71</span></a></li>
 <li><a href="markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul></ul></a></li>
 <li><a href="deprecated.html"><i class="icon-stop"></i> Deprecated elements 
@@ -57,7 +57,6 @@
 <li><a href="#_template.php"><i class="icon-file"></i>_template.php</a></li>
 <li><a href="#index.php"><i class="icon-file"></i>index.php</a></li>
 <li><a href="#version.php"><i class="icon-file"></i>version.php</a></li>
-<li><a href="#classes/class.exceptionMySQL.php"><i class="icon-file"></i>classes/class.exceptionMySQL.php</a></li>
 <li><a href="#classes/class.authentication.php"><i class="icon-file"></i>classes/class.authentication.php</a></li>
 <li><a href="#classes/class.errors.php"><i class="icon-file"></i>classes/class.errors.php</a></li>
 <li><a href="#classes/class.crypto.php"><i class="icon-file"></i>classes/class.crypto.php</a></li>
@@ -65,6 +64,7 @@
 <li><a href="#classes/index.php"><i class="icon-file"></i>classes/index.php</a></li>
 <li><a href="#classes/class.html.php"><i class="icon-file"></i>classes/class.html.php</a></li>
 <li><a href="#classes/class.cookies.php"><i class="icon-file"></i>classes/class.cookies.php</a></li>
+<li><a href="#classes/class.Exceptions.php"><i class="icon-file"></i>classes/class.Exceptions.php</a></li>
 <li><a href="#init.php"><i class="icon-file"></i>init.php</a></li>
 </ul></div>
 <div class="span8">
@@ -276,45 +276,6 @@
 <td>error</td>
 <td>42</td>
 <td>No DocBlock was found for property $version</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<div class="package-contents">
-<a name="classes/class.exceptionMySQL.php" id="classes/class.exceptionMySQL.php"></a><h3>
-<i class="icon-file"></i>classes/class.exceptionMySQL.php<small style="float: right;padding-right: 10px;">5</small>
-</h3>
-<div><table class="table markers table-bordered">
-<thead><tr>
-<th>Type</th>
-<th>Line</th>
-<th>Description</th>
-</tr></thead>
-<tbody>
-<tr class="error">
-<td>error</td>
-<td>0</td>
-<td>No page-level DocBlock was found in file classes/class.exceptionMySQL.php</td>
-</tr>
-<tr class="error">
-<td>error</td>
-<td>40</td>
-<td>No DocBlock was found for \MySQLException</td>
-</tr>
-<tr class="error">
-<td>error</td>
-<td>43</td>
-<td>No DocBlock was found for property $exceptionType</td>
-</tr>
-<tr class="error">
-<td>error</td>
-<td>45</td>
-<td>No DocBlock was found for method __construct()</td>
-</tr>
-<tr class="error">
-<td>error</td>
-<td>69</td>
-<td>No DocBlock was found for method showMySQLExceptionInfo()</td>
 </tr>
 </tbody>
 </table></div>
@@ -595,7 +556,60 @@
 </tbody>
 </table></div>
 </div>
-<div class="package-contents"></div>
+<div class="package-contents">
+<a name="classes/class.Exceptions.php" id="classes/class.Exceptions.php"></a><h3>
+<i class="icon-file"></i>classes/class.Exceptions.php<small style="float: right;padding-right: 10px;">8</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file classes/class.Exceptions.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>55</td>
+<td>No DocBlock was found for property $message</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>56</td>
+<td>No DocBlock was found for property $code</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>57</td>
+<td>No DocBlock was found for property $previous</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>59</td>
+<td>Argument $message is missing from the Docblock of __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>59</td>
+<td>Argument $code is missing from the Docblock of __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>59</td>
+<td>Argument $previous is missing from the Docblock of __construct()</td>
+</tr>
+<tr class="notice">
+<td>notice</td>
+<td>87</td>
+<td>Parameter  could not be found in logException()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
 <div class="package-contents">
 <a name="init.php" id="init.php"></a><h3>
 <i class="icon-file"></i>init.php<small style="float: right;padding-right: 10px;">1</small>
@@ -618,7 +632,7 @@
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a10</a> and<br>
-            generated on 2012-10-24T13:30:53-04:00.<br></footer></div>
+            generated on 2012-10-24T16:28:59-04:00.<br></footer></div>
 </div>
 </body>
 </html>

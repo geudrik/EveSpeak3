@@ -55,7 +55,6 @@ class HTML {
 
 	}
 
-
 	# Dump an error out...
 	public function dump_error($error = "An unkown error occured") {
 
