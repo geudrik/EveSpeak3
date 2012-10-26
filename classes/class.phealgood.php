@@ -48,61 +48,72 @@ class PhealGood {
 	*/
 	private static $pheal, $pheal_holder;
 
-
 	/**
 	* Our magic method to ensure a valid pheal object is being passed
 	* @param object $pheal The Pheal object being passed
+	* @return mixed EXCEPTION is a valid pheal object isn't passed to the constructor, otherwise the object is instantiated.
 	*/
 	public function __construct($pheal) {
 
-		if(!isset($pheal) || !is_object($pheal)) { throw new exception("PhealGood cannot instantiate. A valid Pheal object is not being passed");
-		} else {
-			$this->pheal_holder = $pheal;
+		# Just a runthrough to ensure that we're actually being passed a valid Pheal object.
+		try {
+			if(!isset($pheal) || !is_object($pheal))
+			{
+				throw new excetion("PhealGood cannot instantiate. A valid Pheal object was no passed.")
+			} else {
+				$this->pheal_holder = $pheal;
+			}
+			
+		} catch (Exception $e) {
+			return $e;
 		}
 	}
-
 
 	/**
 	* Validate the submitted API information
 	*
 	* This function takes no direct parameters. It relies on the magic method having checked for a valid pheal object being passed in
 	*
-	* @return multi  EXCEPTION on failure, TRUE on success
+	* @return multi EXCEPTION on failure, TRUE on success
 	*/	
 	private function Validate_KeyPair() {
-	# Return TRUE if validation SUCCEEDS, a STRING (error text) upon FAILURE.
-		
 			
-			# Now, let's see if we can do some stuff with that players API info
+		# Now, let's see if we can do some stuff with that players API info
 		try {
 
 			# Grab the scope (Account, or just Character) of the API info, for now
 			$this->pheal				=	$this->pheal_holder;
-			$apiScope				=	$this->pheal->accountScope->APIKeyInfo();
+			$apiScope					=	$this->pheal->accountScope->APIKeyInfo();
 			$apiAccountType				=	$apiScope->key->type;
 			$apiAccountExpires			=	$apiScope->key->expires;
 
 		} catch (PhealAPIException $e) {
 			# return ("Error: ".$e->getCode()." || ".$e->getMessage()." || You probably failed to provide a matching id/key pair. [".__FILE__.":".__LINE__."]");
 			return $e;
+
 		} catch (PhealException $e) {
 			# return ("Error: Couldn't get your API details from the CCP Server. Error: ".$e->getMessage()." [".__FILE__.":".__LINE__."]");
 			return $e;
+
 		}
 
+		try {
 
+			# Ensure that their API Info is of the "Account" type, and not just for a specific character.
+			if($apiAccountType !== "Account") {
+				throw new exception("Error: Your key isn't an Account key. Please remedy this issue and come back here");
 
-		# Ensure that their API Info is of the "Account" type, and not just for a specific character.
-		if($apiAccountType !== "Account") {
-			# return ("Error: Your key isn't an Account key. Please remedy this issue and come back here");
-			return FALSE;
+			# Ensure that their API information isn't set to expire
+			} else if($apiAccountExpires !== ""){
+				throw new exception("Error: Your API information expires. Please ensure that it's set to never expire and try again")
+
+			}
+
+		} catch (Exception $e) {
+			return $e;
+
 		}
 
-		# If their key has an expiration date...
-		if($apiAccountExpires !== "") {
-			return ("Error: Your API information expires. Please ensure that it's set to never expire and try again");
-			return FALSE;
-		}
 
 		# Memory managemnt
 		unset($this->pheal);
@@ -111,8 +122,6 @@ class PhealGood {
 		return TRUE;
 	}
 	
-
-
 	/**
 	* Actually grab the players information from the EvE API servers
 	*
@@ -122,88 +131,82 @@ class PhealGood {
 	*/	
 	public function Get_Character_Info() {
 
-		# First, lets ensure that validation of our pheal object succeeds...
-		if($this->Validate_KeyPair()) {
-
-			# Create array of character names.
-			try {
-				$this->pheal		=	$this->pheal_holder;
-				$result			=	$this->pheal->Characters();
-			} catch (PhealAPIException $e) {
-				# return ("Error: PHEAL Puked. There was an API Issue with the Key/ID Pair. ".$e->getMessage().__FILE__.":".__LINE__."]");
-				return $e;
-			} catch (PhealException $e) {
-				# return ("Couldn't get API Details from server. Error: ".$e->getMessage()."[".__FILE__.":".__LINE__."]");
-				return $e;
-			}
-
-			# Define a session var that holds a small array (no larger than 3 pairs) of character names...
-			$_SESSION['CHARACTERS_ON_ACCOUNT'] = array();
-
-			# For now, let's just make sure we can dump all of the characters tied to the account
-			foreach ($result->characters as $apiCharacter) {
-				$character	=	$apiCharacter->name;
-				$_SESSION['CHARACTERS_ON_ACCOUNT'][$character]	=	array();
-			}
-			
-			# Memory management...
-			unset($pheal);
-			
-			# Create array of character names with the addition of eve related ID's
-			try {
-
-				$pheal		=	$this->pheal_holder;
-				$pheal->scope	=	"eve";
-
-				foreach ($_SESSION['CHARACTERS_ON_ACCOUNT'] as $key => $value) {
-			
-					$result = 	$pheal->CharacterID(array("names" => $key));
-					$id	=	$result->characters[0]->characterID;
-					
-					# Create new keypair in our array of characters
-					$_SESSION['CHARACTERS_ON_ACCOUNT'][$key]['id']	=	(int) $id;
-				}
-
-			} catch(PhealHTTPException $e) {
-				# echo("Pheal Puked. Error: ".$e->getMessage()."[".__FILE__.":".__LINE__."]");
-				return $e;
-			} catch(PhealException $e) {
-				# echo("Pheal Puked. Error: ".$e->getMessage()."[".__FILE__.":".__LINE__."]");
-				return $e;
-			}
-			
-			# Now that we've got a useable array of character names, let's go ahead and populate it with Corp and Alliance ID's
-			try {
-				foreach ($_SESSION['CHARACTERS_ON_ACCOUNT'] as $key => $value) {
-
-					$result		=	$pheal->eveScope->CharacterInfo(array('characterID' => $value['id']));
-					$corp		=	$result->corporation;
-					$corpID		=	$result->corporationID;
-					$alliance	=	$result->alliance;
-					$allianceID	=	$result->allianceID;
-
-					# Populate our array....
-					$_SESSION['CHARACTERS_ON_ACCOUNT'][$key]['corporation']		=	(string) $corp;
-					$_SESSION['CHARACTERS_ON_ACCOUNT'][$key]['corporationID']	=	(int) $corpID;
-					$_SESSION['CHARACTERS_ON_ACCOUNT'][$key]['alliance']		=	(string) $alliance;
-					$_SESSION['CHARACTERS_ON_ACCOUNT'][$key]['allianceID']		=	(int) $allianceID;
-				}
-
-			} catch(PhealHTTPException $e) {
-				# return("Pheal Puked. Error: ".$e->getMessage()."[".__FILE__.":".__LINE__."]");
-				return $e;
-			} catch(PhealException $e) {
-				# return("Pheal Puked. Error: ".$e->getMessage()."[".__FILE__.":".__LINE__."]");
-				return $e;
-			}
-			
-			# Memory management and conclusion...
-			unset($this->pheal, $this->pheal_holder);
-			return TRUE;
-		} else {
-			return FALSE;
+		# Create array of character names.
+		try {
+			$this->pheal		=	$this->pheal_holder;
+			$result				=	$this->pheal->Characters();
+		} catch (PhealAPIException $e) {
+			# return ("Error: PHEAL Puked. There was an API Issue with the Key/ID Pair. ".$e->getMessage().__FILE__.":".__LINE__."]");
+			return $e;
+		} catch (PhealException $e) {
+			# return ("Couldn't get API Details from server. Error: ".$e->getMessage()."[".__FILE__.":".__LINE__."]");
+			return $e;
 		}
-	}
+
+		# Define a session var that holds a small array (no larger than 3 pairs) of character names...
+		$_SESSION['CHARACTERS_ON_ACCOUNT'] = array();
+
+		# For now, let's just make sure we can dump all of the characters tied to the account
+		foreach ($result->characters as $apiCharacter) {
+			$character	=	$apiCharacter->name;
+			$_SESSION['CHARACTERS_ON_ACCOUNT'][$character]	=	array();
+		}
+		
+		# Memory management...
+		unset($pheal);
+		
+		# Create array of character names with the addition of eve related ID's
+		try {
+
+			$pheal			=	$this->pheal_holder;
+			$pheal->scope	=	"eve";
+
+			foreach ($_SESSION['CHARACTERS_ON_ACCOUNT'] as $key => $value) {
+		
+				$result = 	$pheal->CharacterID(array("names" => $key));
+				$id		=	$result->characters[0]->characterID;
+				
+				# Create new keypair in our array of characters
+				$_SESSION['CHARACTERS_ON_ACCOUNT'][$key]['id']	=	(int) $id;
+			}
+
+		} catch(PhealHTTPException $e) {
+			# echo("Pheal Puked. Error: ".$e->getMessage()."[".__FILE__.":".__LINE__."]");
+			return $e;
+		} catch(PhealException $e) {
+			# echo("Pheal Puked. Error: ".$e->getMessage()."[".__FILE__.":".__LINE__."]");
+			return $e;
+		}
+		
+		# Now that we've got a useable array of character names, let's go ahead and populate it with Corp and Alliance ID's
+		try {
+			foreach ($_SESSION['CHARACTERS_ON_ACCOUNT'] as $key => $value) {
+
+				$result		=	$pheal->eveScope->CharacterInfo(array('characterID' => $value['id']));
+				$corp		=	$result->corporation;
+				$corpID		=	$result->corporationID;
+				$alliance	=	$result->alliance;
+				$allianceID	=	$result->allianceID;
+
+				# Populate our array....
+				$_SESSION['CHARACTERS_ON_ACCOUNT'][$key]['corporation']		=	(string) $corp;
+				$_SESSION['CHARACTERS_ON_ACCOUNT'][$key]['corporationID']	=	(int) $corpID;
+				$_SESSION['CHARACTERS_ON_ACCOUNT'][$key]['alliance']		=	(string) $alliance;
+				$_SESSION['CHARACTERS_ON_ACCOUNT'][$key]['allianceID']		=	(int) $allianceID;
+			}
+
+		} catch(PhealHTTPException $e) {
+			# return("Pheal Puked. Error: ".$e->getMessage()."[".__FILE__.":".__LINE__."]");
+			return $e;
+		} catch(PhealException $e) {
+			# return("Pheal Puked. Error: ".$e->getMessage()."[".__FILE__.":".__LINE__."]");
+			return $e;
+		}
+		
+		# Memory management and conclusion...
+		unset($this->pheal, $this->pheal_holder);
+		return TRUE;
+	} 
 }	
 
 ?>

@@ -40,7 +40,7 @@
 include_once("config.php");
 include_once("functions.crypto.php");
 
-$c	=	new Config;
+$c		=	new Config;
 $cry	=	new Crypto($c->encryption_iv, $c->encryption_key);
 
 $string = "The quick brown fox...";

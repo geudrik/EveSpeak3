@@ -46,6 +46,9 @@ class Crypto {
 	private $cipher;
 	private $cipherMode;
 
+	private $obj_key	=	12345;
+	private $obj_iv		=	abc123;
+
 	/**
 	* Magic Instantiation Method
 	*
@@ -72,27 +75,31 @@ class Crypto {
 	*
 	* This function ecnrypts a string, based on the parameters passed to it
 	* Note: This function will ALWAYS return something, even if it's not what you want. A string is the returned result. Make sure that when you instantiate this class, you set your varaibles properly!
-	*
+	* Note 2: It's up to YOU to keep track of what's encrypted and what isn't. For example, if you pass this function an object, it assumes that it's not critical information and as such, uses the pre-defined strings in this class to encrypt and decrypt the data.
 	* @since 1.0
 	*
-	* @param string $string The unencrypted string to encrypt
+	* @param mixed $data The unencrypted data to encrypt
 	* @param bool $base64 TRUE or FALSE - ENCODE our encrypted string before returning (DEFAULT: TRUE)
-	*
+	* @param return string The string passed is now returned as an encrypted string, hopefully base64 encoded to avoid issues.
 	*/
-	public function Encrypt_String($string, $base64 = TRUE)
+	public function Encrypt($data, $base64 = TRUE)
 	{
 
-		# Lets torture our processor (encrypt the string)
-		$string = mcrypt_encrypt($this->cipher, $this->key, $string, $this->cipherMode, $this->iv);
+		# If an object, assume non-essential encryption
+		if(is_object($data))
+		{
+			$data = mcrypt_encrypt($this->cipher, $this->obj_key, json_encode($data), $this->cipherMode, $this->obj_iv)
+		} else {
+			$data = mcrypt_encrypt($this->cipher, $this->key, $string, $this->cipherMode, $this->iv);
+		}
 
-		# Do we need a non-binary safe return?
 		if($base64)
 		{
-			$string = base64_encode($string);
+			$data = base64_encode($data);
 		}
 
 		// Return our encrypted data
-		return $string;
+		return $data;
 	}
 
 
@@ -106,23 +113,38 @@ class Crypto {
 	*
 	* @param string $string The encrypted string, which CAN be base64 encoded, to decrypt
 	* @param bool $base64 TRUE or FALSE - Do we need to DECODE our scring before ecnryption (DEFAULT: TRUE)
+	* @param return string The decrypted string is returned in plaintext.
 	*
 	*/
-	public function Decrypt_String($string, $base64 = TRUE)
+	public function Decrypt($data, $base64 = TRUE, $object = FALSE)
 	{
 		# Special Note: The IV used to decrypt the string MUST be the same as the one used to encrypt the string (it's basically a salt)
 
-		# If we're passing a base64 encoded string, we need to decode it first...
-		if($base64) 
+		if($object)
 		{
-			$string = base64_decode($string);
+
+			if($base64)
+			{
+				$data = base64_decode($data);
+			}
+
+			$data = json_decode(mcrypt_decrypt($this->cipher, $this->obj_key, $data, $this->mode, $this->obj_iv))
+			return $data;
+
+		} else {
+
+			if($base64) 
+			{
+				$data = base64_decode($data);
+			}
+
+			# Torment our processor (Decrypt our string)
+			$data = mcrypt_decrypt($this->cipher, $this->key, $data, $this->cipherMode, $this->iv );
+			return rtrim($data)V
 		}
 
-		# Torment our processor (Decrypt our string)
-		$string= mcrypt_decrypt($this->cipher, $this->key, $string, $this->cipherMode, $this->iv );
-
-		# Return the decrypted data. We need to trim() it to remove padding added during encryption
-		return rtrim($string);
+		return FALSE;
 	}
+
 
 }
