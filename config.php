@@ -114,7 +114,7 @@ class Config {
 		$m = new mysqli($this->db_host, $this->db_user, $this->db_pass, $this->db_name);
 		if($m->connect_errno)
 		{
-			die("Pat fails right off the bat...".$m->connect_error
+			die("Pat fails right off the bat...".$m->connect_error);
 		}
 
 		$sql	=	"SELECT * FROM config LIMIT 1";
@@ -126,20 +126,20 @@ class Config {
 		if(!empty($array)) {
 
 			# Begin to set our session variables
-			$this->encryption_key			=	$array['crypto_general_key'];
-			$this->encryption_iv			=	$array['crypto_general_iv'];
+			$this->encryption_key				=	$array['crypto_general_key'];
+			$this->encryption_iv				=	$array['crypto_general_iv'];
 			$this->encryption_ciphername		=	$array['crypto_ciphername'];
 			$this->encryption_ciphermode		=	$array['crypto_ciphermode'];
-			$this->validation_substr		=	$array['validation_substr'];
-			$this->teamspeak_host			=	$array['teamspeak_host'];
-			$this->teamspeak_SAName			=	$array['teamspeak_SAName'];
-			$this->teamspeak_SAPassword		=	$array['teamspeak_SAPassword'];
-			$this->teamspeak_query_port		=	$array['teamspeak_query_port'];
+			$this->validation_substr			=	$array['validation_substr'];
+			$this->teamspeak_host				=	$array['teamspeak_host'];
+			$this->teamspeak_SAName				=	$array['teamspeak_SAName'];
+			$this->teamspeak_SAPassword			=	$array['teamspeak_SAPassword'];
+			$this->teamspeak_query_port			=	$array['teamspeak_query_port'];
 			$this->teamspeak_client_port		=	$array['teamspeak_client_port'];
 			$this->teamspeak_alliance_group		=	$array['teamspeak_alliance_group'];
 			$this->teamspeak_whitelist_group	=	$array['teamspeak_whitelist_group'];
 			$this->teamspeak_ticker_format		=	$array['teamspeak_ticker_format'];
-			$this->secure_cookie			=	$array['secure_cookie'];
+			$this->secure_cookie				=	$array['secure_cookie'];
 		} else { die("There was an error in ".__FILE__." instantiating the Config class."); }
 	}
 
