@@ -105,7 +105,7 @@ class PhealGood {
 
 			# Ensure that their API information isn't set to expire
 			} else if($apiAccountExpires !== ""){
-				throw new exception("Error: Your API information expires. Please ensure that it's set to never expire and try again")
+				throw new exception("Error: Your API information expires. Please ensure that it's set to never expire and try again");
 
 			}
 
