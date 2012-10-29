@@ -39,13 +39,13 @@
 
 session_start();
 
-include_once("config.php");
-include_once("pheal/Pheal.php");
-include_once("classes/class.phealgood.php");
-include_once("classes/class.cookies.php");
-include_once("classes/class.crypto.php");
-include_once("classes/class.html.php");
-include_once("classes/class.Exceptions.php");
+require("config.php");
+require("pheal/Pheal.php");
+require("classes/class.phealgood.php");
+require("classes/class.cookies.php");
+require("classes/class.crypto.php");
+require("classes/class.html.php");
+require("classes/class.Exceptions.php");
 
 $config			=	new Config;
 $html			=	new HTML;
@@ -104,13 +104,6 @@ if(!isset($_SESSION['REGISTRATION_STEP']) && isset($_POST['register_submit'])) {
 
 	# We now have a character ID that the aplicant has nominated as their main.
 	#	It is now time to reference that CORP ID (in our session varaible) against the whitelist
-	try {
-		if($m = $config->mysql("connect") == FALSE)
-		{
-			throw new EvespeakException("Failed to connect to the database.", 120, NULL);
-		}
-	} catch (EvespeakException $e) {
-		EvespeakException->mysqlException($e);
-	}
+
 
 }
