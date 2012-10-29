@@ -58,11 +58,12 @@ if(!isset($_SESSION['REGISTRATION_STEP']) && isset($_POST['register_submit'])) {
 	$key	=	trim($_POST['apiToken']);
 	$id	=	trim($_POST['apiID']);
 
+	# Initialize a Pheal instance
 	spl_autoload_register("Pheal::classload");
 	PhealConfig::getInstance()->api_base 		=	"https://api.eveonline.com/"; 
 	PhealConfig::getInstance()->api_customkeys	=	TRUE;
-	PhealConfig::getInstance()->cache 		= 	new PhealFileCache($config->pheal_cache);
-	$pheal						=	new Pheal($id, $key);
+	PhealConfig::getInstance()->cache 			= 	new PhealFileCache($config->pheal_cache);
+	$pheal										=	new Pheal($id, $key);
 
 
 	# Now, the real fun begins. Call our PhealGood class...
@@ -89,11 +90,27 @@ if(!isset($_SESSION['REGISTRATION_STEP']) && isset($_POST['register_submit'])) {
 		die("Phealgood ate shit for some reason. A thrown exception wasn't caught for some reason");
 	}
 
+# Session variable set for step 2 of the registration page. $_GET will be an ID listed in the array of ID's.
 } else if($_SESSION['REGISTRATION_STEP'] == '2') {
 
 	$char_ID	=	$_GET['char'];
 
+	# Let's make sure nobody is trying to pass obscure data...
+	if(!is_numeric($char_ID) or empty($char_ID))
+	{
+		# Generate an error page...
+		die("Invalid character id. Try again. [".__LINE__."]")
+	}
+
 	# We now have a character ID that the aplicant has nominated as their main.
 	#	It is now time to reference that CORP ID (in our session varaible) against the whitelist
+	try {
+		if($m = $config->mysql("connect") == FALSE)
+		{
+			throw new EvespeakException("Failed to connect to the database.", 120, NULL)
+		}
+	} catch (EvespeakException $e) {
+		EvespeakException->mysqlException($e);
+	}
 
 }

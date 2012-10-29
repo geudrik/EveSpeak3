@@ -149,11 +149,18 @@ class Config {
 	* Quick function to make database connections easier...
 	*
 	* @param string $var Haven't you heard? I thought everyone had heard... Bird bird bird, the bird is the wo.. No, wait. "connect" is the only string accepted. Empty, or anything else, the connection to the db closes.
+	* @return mixed $var If a connetion cannot be established, this function returns FALSE, othewise a vaild connection handle is returned.
 	*/
 	public function mysql($var) {
 		if($var = "connect") {
-			mysqli_connect($this->db_host, $this->db_user, $this->db_pass) or die("Fatal error. Could not connect to the database<br />".mysqli_error());
-			mysqli_select_db($this->db_name) or die("Could not conect to the specified database.<br />".mysqli_error());
+			$m = new mysqli($this->db_host, $this->db_user, $this->db_pass, $this->db_name))
+			if($m->connect_errno)
+			{
+				# We were unable to initiate a connection.
+				return false;
+			} else {
+				return $m;
+			}
 		} else {
 			mysqli_close();
 		}
