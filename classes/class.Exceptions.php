@@ -52,9 +52,9 @@
 class EvespeakException extends Exception
 {
 
-	private $message	= 'YOU FORGOT TO SET AN EXCEPTION MESSAGE';
-	private $code		= 0;
-	private $previous	= NULL;
+	protected $message	= 'YOU FORGOT TO SET AN EXCEPTION MESSAGE';
+	protected $code		= 0;
+	protected $previous	= NULL;
 
 	/**
 	* Magic Method
@@ -65,7 +65,7 @@ class EvespeakException extends Exception
 	{
 
 		$this->message	=	$message;
-		$this->code	=	$code;
+		$this->code		=	$code;
 		$this->previous	=	$previous;
 		
 		# Tell our parent to throw an exception, which we'll deal with later.
@@ -97,7 +97,7 @@ class EvespeakException extends Exception
 	{
 		if($handle = fopen("/var/log/evespeak/error.log", rw))
 		{
-			$exception	=	"\n[".date("Y-m-d H:i:s")."] ".$type." Exception thrown -> ".$this->__toString();
+			$exception	=	"\n[".date("Y-m-d H:i:s")."] ".$type." Exception thrown -> \n".$this->__toString();
 			if(fwrite($handle, $exception)) { 
 				fclose($handle);
 				return TRUE; 
@@ -114,8 +114,10 @@ class EvespeakException extends Exception
 	* Function mysqlException
 	*
 	* Our custom exception to do something with mysql issues
+	*
+	* @param object $exception This variable is the exception the parent class threw
 	*/
-	public function mysqlException()
+	public function mysqlException($exception)
 	{
 
 	}
