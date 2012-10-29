@@ -88,7 +88,7 @@ class Crypto {
 		# If an object, assume non-essential encryption
 		if(is_object($data))
 		{
-			$data = mcrypt_encrypt($this->cipher, $this->obj_key, json_encode($data), $this->cipherMode, $this->obj_iv)
+			$data = mcrypt_encrypt($this->cipher, $this->obj_key, json_encode($data), $this->cipherMode, $this->obj_iv);
 		} else {
 			$data = mcrypt_encrypt($this->cipher, $this->key, $string, $this->cipherMode, $this->iv);
 		}
@@ -128,7 +128,7 @@ class Crypto {
 				$data = base64_decode($data);
 			}
 
-			$data = json_decode(mcrypt_decrypt($this->cipher, $this->obj_key, $data, $this->mode, $this->obj_iv))
+			$data = json_decode(mcrypt_decrypt($this->cipher, $this->obj_key, $data, $this->mode, $this->obj_iv));
 			return $data;
 
 		} else {
@@ -140,7 +140,7 @@ class Crypto {
 
 			# Torment our processor (Decrypt our string)
 			$data = mcrypt_decrypt($this->cipher, $this->key, $data, $this->cipherMode, $this->iv );
-			return rtrim($data)V
+			return rtrim($data);
 		}
 
 		return FALSE;
