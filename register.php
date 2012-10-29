@@ -96,10 +96,10 @@ if(!isset($_SESSION['REGISTRATION_STEP']) && isset($_POST['register_submit'])) {
 	$char_ID	=	$_GET['char'];
 
 	# Let's make sure nobody is trying to pass obscure data...
-	if(!is_numeric($char_ID) or empty($char_ID))
+	if(!is_numeric($char_ID) or empty($char_ID) or !in_array($char_ID, $_SESSION['']))
 	{
 		# Generate an error page...
-		die("Invalid character id. Try again. [".__LINE__."]")
+		die("Invalid character id. Try again. [".__LINE__."]");
 	}
 
 	# We now have a character ID that the aplicant has nominated as their main.
@@ -107,7 +107,7 @@ if(!isset($_SESSION['REGISTRATION_STEP']) && isset($_POST['register_submit'])) {
 	try {
 		if($m = $config->mysql("connect") == FALSE)
 		{
-			throw new EvespeakException("Failed to connect to the database.", 120, NULL)
+			throw new EvespeakException("Failed to connect to the database.", 120, NULL);
 		}
 	} catch (EvespeakException $e) {
 		EvespeakException->mysqlException($e);
