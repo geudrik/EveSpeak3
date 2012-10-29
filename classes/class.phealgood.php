@@ -59,7 +59,7 @@ class PhealGood {
 		try {
 			if(!isset($pheal) || !is_object($pheal))
 			{
-				throw new excetion("PhealGood cannot instantiate. A valid Pheal object was no passed.")
+				throw new excetion("PhealGood cannot instantiate. A valid Pheal object was no passed.");
 			} else {
 				$this->pheal_holder = $pheal;
 			}
