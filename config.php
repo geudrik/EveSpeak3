@@ -153,7 +153,7 @@ class Config {
 	*/
 	public function mysql($var) {
 		if($var = "connect") {
-			$m = new mysqli($this->db_host, $this->db_user, $this->db_pass, $this->db_name))
+			$m = new mysqli($this->db_host, $this->db_user, $this->db_pass, $this->db_name);
 			if($m->connect_errno)
 			{
 				# We were unable to initiate a connection.
